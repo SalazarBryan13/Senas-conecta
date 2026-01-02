@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SeñasConecta - Historias interactivas para aprender lengua de señas">
+    <title>SeñasConecta - Historias</title>
+    <style>
+        /* ============================================
+           SEÑASCONECTA - PREMIUM STORY INTERFACE
+           Paleta: Amanecer Cálido (Naranja, Amarillo, Celeste)
+           ============================================ */
+
+        /* Importar fuente elegante */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap');
+
+        /* Paleta Amanecer - Naranja, Amarillo, Celeste */
+        :root {
+            --sunrise-orange-deep: #D35400;
+            --sunrise-orange: #E67E22;
+            --sunrise-orange-light: #F39C12;
+            --sunrise-yellow: #F1C40F;
+            --sunrise-yellow-light: #F9E79F;
+            --sunrise-peach: #FDEBD0;
+            --sunrise-sky: #85C1E9;
+            --sunrise-sky-light: #AED6F1;
+            --sunrise-sky-deep: #5DADE2;
+            --sunrise-cream: #FFF9E6;
+            --sunrise-text: #5D4E37;
+            --sunrise-success: #58D68D;
+            --sunrise-error: #E74C3C;
+        }
+
+        /* Reset y base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===============================
+           FONDO AMANECER / ATARDECER
+           =============================== */
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            background:
+                /* Nubes decorativas */
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 70% 30%, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
+                radial-gradient(ellipse 90% 60% at 50% 60%, rgba(255, 255, 255, 0.25) 0%, transparent 55%),
+                /* Sol brillante */
+                radial-gradient(circle at 50% 85%, rgba(241, 196, 15, 0.6) 0%, rgba(243, 156, 18, 0.3) 20%, transparent 50%),
+                /* Gradiente de amanecer */
+                linear-gradient(180deg,
+                    #5DADE2 0%,
+                    /* Cielo celeste */
+                    #85C1E9 10%,
+                    /* Celeste claro */
+                    #AED6F1 20%,
+                    /* Celeste muy claro */
+                    #FDEBD0 35%,
+                    /* Transición a durazno */
+                    #F9E79F 45%,
+                    /* Amarillo pálido */
+                    #F7DC6F 55%,
+                    /* Amarillo dorado */
+                    #F39C12 70%,
+                    /* Naranja dorado */
+                    #E67E22 85%,
+                    /* Naranja intenso */
+                    #D35400 100%);
+            /* Naranja profundo */
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Rayos de sol decorativos */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200%;
+            height: 60%;
+            background:
+                conic-gradient(from 0deg at 50% 100%,
+                    transparent 0deg,
+                    rgba(255, 200, 100, 0.15) 10deg,
+                    transparent 20deg,
+                    rgba(255, 200, 100, 0.1) 30deg,
+                    transparent 40deg,
+                    rgba(255, 200, 100, 0.15) 50deg,
+                    transparent 60deg,
+                    rgba(255, 200, 100, 0.1) 70deg,
+                    transparent 80deg,
+                    rgba(255, 200, 100, 0.15) 90deg,
+                    transparent 100deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===============================
+           CONTENEDOR PRINCIPAL
+           =============================== */
+        main {
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .screen {
+            width: 100%;
+        }
+
+        .screen:not(.active) {
+            display: none;
+        }
+
+        .container {
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(255, 249, 230, 0.98) 50%,
+                    rgba(253, 235, 208, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 1.75rem;
+            box-shadow:
+                0 20px 60px rgba(211, 84, 0, 0.25),
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 0 0 1px rgba(243, 156, 18, 0.2);
+            border: 2px solid rgba(241, 196, 15, 0.3);
+        }
+
+        /* ===============================
+           TÍTULO DEL CAPÍTULO
+           =============================== */
+        .chapter-title {
+            font-family: 'Fredoka One', 'Nunito', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--sunrise-orange-deep);
+            text-align: center;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(211, 84, 0, 0.15);
+        }
+
+        /* ===============================
+           BARRA DE PROGRESO
+           =============================== */
+        .chapter-progress {
+            background: linear-gradient(180deg, #FFF9E6 0%, #F9E79F 100%);
+            border-radius: 20px;
+            padding: 4px;
+            margin-bottom: 1.25rem;
+            box-shadow: inset 0 2px 4px rgba(211, 84, 0, 0.1);
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .chapter-progress .progress-bar {
+            background: linear-gradient(90deg,
+                    var(--sunrise-yellow) 0%,
+                    var(--sunrise-orange-light) 50%,
+                    var(--sunrise-orange) 100%);
+            border-radius: 16px;
+            height: 14px;
+            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-progress .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, transparent 100%);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .chapter-progress .progress-text {
+            color: var(--sunrise-orange-deep);
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: block;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+
+        /* ===============================
+           ÁREA DE ILUSTRACIÓN
+           =============================== */
+        .scene-illustration-area {
+            margin-bottom: 1.25rem;
+        }
+
+        .scene-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scene-visual {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(211, 84, 0, 0.15);
+        }
+
+        .illustration-placeholder {
+            color: var(--sunrise-orange);
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        /* ===============================
+           CAJA DE TEXTO/ESCENARIO
+           =============================== */
+        .scenario-text {
+            background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFFBF0 100%);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-left: 4px solid var(--sunrise-orange);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .scenario-text p {
+            color: var(--sunrise-text);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin: 0;
+            flex: 1;
+        }
+
+        /* ===============================
+           BOTÓN DE AYUDA "?" - FIJO
+           =============================== */
+        .help-button-inline {
+            background: linear-gradient(135deg, var(--sunrise-sky-light) 0%, var(--sunrise-sky) 100%);
+            border: 2px solid var(--sunrise-sky-deep);
+            border-radius: 50%;
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(93, 173, 226, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .help-button-inline:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(93, 173, 226, 0.5);
+        }
+
+        /* ===============================
+           TOOLTIP FIJO - NO SE MUEVE
+           =============================== */
+        .tooltip {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            background: linear-gradient(135deg, var(--sunrise-sky-deep) 0%, var(--sunrise-sky) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            max-width: 320px;
+            width: 90%;
+            z-index: 9999 !important;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(174, 214, 241, 0.4);
+            animation: tooltipAppear 0.3s ease-out;
+            border: 2px solid var(--sunrise-sky-light);
+        }
+
+        .tooltip::before {
+            content: '💡 Consejo';
+            display: block;
+            font-family: 'Fredoka One', sans-serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--sunrise-yellow);
+        }
+
+        .tooltip p {
+            margin: 0;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        @keyframes tooltipAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* ===============================
+           OPCIONES DE DECISIÓN
+           =============================== */
+        .decision-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .decision-option {
+            background: linear-gradient(135deg,
+                    var(--sunrise-cream) 0%,
+                    #FFFBF0 100%);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-radius: 14px;
+            color: var(--sunrise-text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 1rem 1.25rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .decision-option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--sunrise-orange);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .decision-option:hover:not(:disabled) {
+            border-color: var(--sunrise-orange);
+            background: linear-gradient(135deg, #FFF 0%, var(--sunrise-yellow-light) 100%);
+            transform: translateX(6px);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.25);
+        }
+
+        .decision-option:hover::before {
+            opacity: 1;
+        }
+
+        .decision-option.selected {
+            background: linear-gradient(135deg, var(--sunrise-orange) 0%, var(--sunrise-orange-deep) 100%);
+            border-color: var(--sunrise-orange-deep);
+            color: white;
+            box-shadow: 0 6px 20px rgba(211, 84, 0, 0.4);
+        }
+
+        .decision-option.selected::before {
+            opacity: 1;
+            background: var(--sunrise-yellow);
+        }
+
+        .decision-option:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* ===============================
+           BOTONES PRINCIPALES
+           =============================== */
+        .btn.btn-primary,
+        #continue-scene-btn,
+        #continue-adventure-btn,
+        #next-level-btn {
+            /* NO usar display: block !important - el JS controla la visibilidad */
+            width: 100% !important;
+            background: linear-gradient(135deg,
+                    var(--sunrise-orange-light) 0%,
+                    var(--sunrise-orange) 50%,
+                    var(--sunrise-orange-deep) 100%) !important;
+            border: none !important;
+            border-radius: 14px !important;
+            color: white !important;
+            font-family: 'Nunito', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 1.05rem !important;
+            padding: 1rem 1.5rem !important;
+            cursor: pointer !important;
+            box-shadow:
+                0 6px 20px rgba(211, 84, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+            transition: all 0.25s ease !important;
+            text-transform: none !important;
+            letter-spacing: 0.5px !important;
+            margin-top: 0.75rem !important;
+        }
+
+        .btn.btn-primary:hover,
+        #continue-scene-btn:hover,
+        #continue-adventure-btn:hover,
+        #next-level-btn:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 30px rgba(211, 84, 0, 0.45) !important;
+        }
+
+        /* ===============================
+           BOTONES SECUNDARIOS
+           =============================== */
+        .btn.btn-secondary,
+        #view-map-story-btn,
+        #view-progress-map-btn {
+            /* NO usar display: block !important aquí - el JS controla la visibilidad */
+            width: 100% !important;
+            background: linear-gradient(135deg, var(--sunrise-sky-light) 0%, var(--sunrise-sky) 100%) !important;
+            border: none !important;
+            border-radius: 14px !important;
+            color: var(--sunrise-text) !important;
+            font-family: 'Nunito', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 0.95rem !important;
+            padding: 0.9rem 1.5rem !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 15px rgba(93, 173, 226, 0.4) !important;
+            margin-top: 0.5rem !important;
+        }
+
+        /* ===============================
+           LINK DE VOLVER
+           =============================== */
+        .back-link {
+            display: block;
+            text-align: center;
+            background: transparent;
+            border: 2px solid var(--sunrise-orange);
+            border-radius: 12px;
+            color: var(--sunrise-orange-deep) !important;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none !important;
+            margin-top: 0.75rem;
+            transition: all 0.25s ease;
+        }
+
+        .back-link:hover {
+            background: var(--sunrise-orange);
+            color: white !important;
+            border-color: var(--sunrise-orange);
+        }
+
+        /* ===============================
+           FEEDBACK DE DECISIÓN
+           =============================== */
+        .decision-feedback {
+            background: var(--sunrise-cream);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-left: 4px solid var(--sunrise-orange);
+            border-radius: 14px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .decision-feedback.success {
+            border-left-color: var(--sunrise-success);
+            background: linear-gradient(135deg, #F0FFF4 0%, #D5F5E3 100%);
+        }
+
+        .decision-feedback.error {
+            border-left-color: var(--sunrise-error);
+            background: linear-gradient(135deg, #FFF5F5 0%, #FADBD8 100%);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===============================
+           TÍTULOS Y RESULTADOS
+           =============================== */
+        .screen-title,
+        .result-title {
+            font-family: 'Fredoka One', sans-serif;
+            color: var(--sunrise-orange-deep);
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .result-title {
+            color: var(--sunrise-success);
+            font-size: 2rem;
+        }
+
+        .result-subtitle {
+            color: var(--sunrise-text);
+            text-align: center;
+        }
+
+        /* ===============================
+           CAJAS DE ESTADÍSTICAS
+           =============================== */
+        .stats-container,
+        .global-stats {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 1.25rem 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFF 100%);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-radius: 14px;
+            padding: 1rem;
+            text-align: center;
+            flex: 1;
+            max-width: 100px;
+        }
+
+        .stat-number {
+            color: var(--sunrise-orange-deep);
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            color: var(--sunrise-text);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* ===============================
+           MAPA DE CAPÍTULOS
+           =============================== */
+        .chapters-path {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .chapter-item {
+            background: var(--sunrise-cream);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-radius: 14px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .chapter-item:hover {
+            transform: translateX(5px);
+            border-color: var(--sunrise-orange);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.25);
+        }
+
+        .chapter-item.completed {
+            border-color: var(--sunrise-success);
+            background: linear-gradient(135deg, #F0FFF4 0%, #D5F5E3 100%);
+        }
+
+        .chapter-item.in-progress {
+            border-color: var(--sunrise-orange);
+            background: linear-gradient(135deg, #FFF9E6 0%, var(--sunrise-yellow-light) 100%);
+        }
+
+        .chapter-item h3 {
+            color: var(--sunrise-orange-deep);
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .chapter-status {
+            font-size: 0.75rem;
+            color: var(--sunrise-orange);
+            font-weight: 600;
+        }
+
+        .path-connector {
+            height: 16px;
+            width: 3px;
+            background: linear-gradient(180deg, var(--sunrise-yellow-light) 0%, var(--sunrise-orange-light) 100%);
+            margin-left: 1.5rem;
+            border-radius: 2px;
+        }
+
+        /* ===============================
+           ANIMACIONES
+           =============================== */
+        .screen.active .container {
+            animation: containerEnter 0.5s ease-out;
+        }
+
+        @keyframes containerEnter {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ===============================
+           UTILIDADES
+           =============================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .text-link {
+            background: none;
+            border: none;
+            color: var(--sunrise-sky-deep);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            display: block;
+            text-align: center;
+            margin-top: 0.75rem;
+        }
+
+        .text-link:hover {
+            color: var(--sunrise-orange);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        /* Ocultar keyboard hint */
+        .keyboard-hint {
+            display: none;
+        }
+
+        /* Skip link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* ===============================
+           MAPA DE PROGRESO - ESTILO JUEGO
+           =============================== */
+        .progress-map-container {
+            padding: 1.25rem !important;
+        }
+
+        .map-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .map-header-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .screen-subtitle {
+            color: var(--sunrise-text);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Camino del juego */
+        .game-path {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Nodo del camino */
+        .path-node {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            position: relative;
+            padding: 0.5rem 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .path-node:hover {
+            transform: scale(1.02);
+        }
+
+        .path-node:focus {
+            outline: 2px solid var(--sunrise-orange);
+            outline-offset: 4px;
+            border-radius: 16px;
+        }
+
+        /* Círculo numerado */
+        .node-circle {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .path-node.completed .node-circle {
+            background: linear-gradient(135deg, var(--sunrise-success) 0%, #48BB78 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(88, 214, 141, 0.4);
+        }
+
+        .path-node.in-progress .node-circle {
+            background: linear-gradient(135deg, var(--sunrise-orange-light) 0%, var(--sunrise-orange) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.5);
+        }
+
+        .path-node.available .node-circle {
+            background: linear-gradient(135deg, var(--sunrise-sky-light) 0%, var(--sunrise-sky) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(133, 193, 233, 0.4);
+        }
+
+        .path-node.locked .node-circle {
+            background: linear-gradient(135deg, #BDC3C7 0%, #95A5A6 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        /* Animación de pulso para nodo actual */
+        .node-circle.pulsing {
+            animation: nodePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes nodePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(243, 156, 18, 0.5);
+            }
+
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 6px 25px rgba(243, 156, 18, 0.7);
+            }
+        }
+
+        .node-number {
+            font-size: 1.3rem;
+        }
+
+        .node-check {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--sunrise-success);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Conectores */
+        .node-connector {
+            position: absolute;
+            left: 24px;
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(180deg, var(--sunrise-success) 0%, var(--sunrise-orange) 100%);
+            border-radius: 2px;
+        }
+
+        .node-connector.top-connector {
+            top: -20px;
+        }
+
+        .node-connector.bottom-connector {
+            bottom: -20px;
+        }
+
+        .node-connector.inactive {
+            background: linear-gradient(180deg, #E0E0E0 0%, #BDBDBD 100%);
+        }
+
+        .path-node:first-child .top-connector {
+            display: none;
+        }
+
+        .path-node:last-child .bottom-connector {
+            display: none;
+        }
+
+        /* Tarjeta del nodo */
+        .node-card {
+            flex: 1;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--sunrise-cream) 100%);
+            border-radius: 16px;
+            padding: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid var(--sunrise-yellow-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .path-node:hover .node-card {
+            border-color: var(--sunrise-orange);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.2);
+        }
+
+        .path-node.completed .node-card {
+            border-color: var(--sunrise-success);
+            background: linear-gradient(135deg, #F0FFF4 0%, #D5F5E3 100%);
+        }
+
+        .path-node.in-progress .node-card {
+            border-color: var(--sunrise-orange);
+            background: linear-gradient(135deg, #FFF9E6 0%, var(--sunrise-yellow-light) 100%);
+        }
+
+        .path-node.locked .node-card {
+            opacity: 0.6;
+            border-color: #E0E0E0;
+        }
+
+        /* Icono del nodo */
+        .node-icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Contenido del nodo */
+        .node-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .node-content h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--sunrise-text);
+            margin: 0 0 0.4rem 0;
+            line-height: 1.3;
+        }
+
+        /* Barra de progreso del nodo */
+        .node-progress-container {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.4rem;
+        }
+
+        .node-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sunrise-yellow) 0%, var(--sunrise-orange) 100%);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .path-node.completed .node-progress-bar {
+            background: linear-gradient(90deg, var(--sunrise-success) 0%, #48BB78 100%);
+        }
+
+        /* Badges de estado */
+        .node-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        .badge-icon {
+            font-size: 0.75rem;
+        }
+
+        .completed-badge {
+            background: var(--sunrise-success);
+            color: white;
+        }
+
+        .progress-badge {
+            background: var(--sunrise-orange);
+            color: white;
+        }
+
+        .available-badge {
+            background: var(--sunrise-sky);
+            color: white;
+        }
+
+        .locked-badge {
+            background: #95A5A6;
+            color: white;
+        }
+
+        /* Panel de estadísticas */
+        .stats-panel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, var(--sunrise-cream) 100%);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--sunrise-yellow-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--sunrise-orange-deep);
+        }
+
+        .stat-total {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--sunrise-text);
+            opacity: 0.6;
+        }
+
+        .stat-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--sunrise-text);
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, transparent 0%, var(--sunrise-orange-light) 50%, transparent 100%);
+        }
+
+        /* Acciones del mapa */
+        .map-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .play-btn {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Skip link para navegación por teclado -->
+    <a href="#main-content" class="skip-link" id="skip-link">
+        Saltar al contenido principal
+    </a>
+
+    <!-- Indicador de ayuda para teclado -->
+    <div class="keyboard-hint" id="keyboard-hint" aria-live="polite" aria-atomic="true">
+        <span>Navegación: </span>
+        <span><kbd>Tab</kbd> siguiente</span>
+        <span><kbd>BloqMayús</kbd> anterior</span>
+        <span><kbd>Enter</kbd> seleccionar</span>
+        <span><kbd>Esc</kbd> volver</span>
+    </div>
+
+    <!-- Contenido principal -->
+    <main id="main-content">
+
+        <!-- Pantalla de Historia/Decisión -->
+        <div id="story-screen" class="screen active" role="main" aria-label="Historia interactiva">
+            <div class="container">
+                <!-- Título del capítulo -->
+                <h2 class="chapter-title" id="chapter-title">Capítulo 1 - Encuentro</h2>
+
+                <!-- Indicador de progreso del capítulo -->
+                <div class="chapter-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                    aria-label="Progreso del capítulo">
+                    <div class="progress-bar" id="chapter-progress-bar"></div>
+                    <span class="progress-text" id="chapter-progress-text">Escena 1 de 4</span>
+                </div>
+
+                <!-- Área de ilustración de la escena -->
+                <div class="scene-illustration-area" role="img" aria-label="Ilustración de la escena">
+                    <div class="scene-image" id="scene-image">
+                        <div class="scene-visual school-scene">
+                            <div class="school-building">
+                                <div class="roof"></div>
+                                <div class="windows">
+                                    <div class="window"></div>
+                                    <div class="window"></div>
+                                </div>
+                                <div class="door"></div>
+                            </div>
+                        </div>
+                        <p class="illustration-placeholder">[Escena ilustrada]</p>
+                    </div>
+                </div>
+
+                <!-- Texto del escenario -->
+                <div class="scenario-text" role="region" aria-label="Descripción del escenario">
+                    <div class="scenario-header">
+                        <p id="scenario-description">Estás en la escuela y conoces a una persona sorda. Ella intenta
+                            comunicarse contigo usando señas. ¿Qué haces?</p>
+                        <button class="help-button-inline" id="story-help-btn"
+                            aria-label="Mostrar ayuda sobre esta escena" title="¿Necesitas ayuda?">
+                            <span aria-hidden="true">?</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Opciones de decisión -->
+                <div class="decision-options" role="group" aria-label="Opciones de decisión">
+                    <button class="decision-option" data-decision="speak" aria-describedby="decision-speak-desc">
+                        – Intentar hablar
+                    </button>
+                    <span id="decision-speak-desc" class="sr-only">Decisión: Intentar comunicarte hablando</span>
+
+                    <button class="decision-option" data-decision="signs" aria-describedby="decision-signs-desc">
+                        – Usar señas básicas
+                    </button>
+                    <span id="decision-signs-desc" class="sr-only">Decisión: Usar señas básicas para comunicarte</span>
+
+                    <button class="decision-option" data-decision="ignore" aria-describedby="decision-ignore-desc">
+                        – Ignorar
+                    </button>
+                    <span id="decision-ignore-desc" class="sr-only">Decisión: Ignorar la situación</span>
+                </div>
+
+                <!-- Feedback de decisión -->
+                <div class="decision-feedback" id="decision-feedback" role="alert" aria-live="polite"
+                    style="display: none;"></div>
+
+                <!-- Botón de continuar (escenas intermedias) -->
+                <button class="btn btn-primary" id="continue-scene-btn" disabled style="display: none;"
+                    aria-label="Continuar a la siguiente escena">
+                    Continuar
+                </button>
+
+                <!-- Botón de ver mapa (escena final) -->
+                <button class="btn btn-secondary" id="view-map-story-btn" style="display: none;"
+                    aria-label="Ver mapa de avance">
+                    🗺️ Ver mapa de avance
+                </button>
+
+                <!-- Botón de siguiente capítulo (escena final, capítulos 1-3) -->
+                <button class="btn btn-primary" id="next-chapter-btn" style="display: none;"
+                    aria-label="Ir al siguiente capítulo">
+                    Siguiente capítulo →
+                </button>
+
+                <!-- Navegación -->
+                <a href="index.html" class="back-link" id="back-from-story-btn">← Volver al inicio</a>
+            </div>
+        </div>
+
+        <!-- Pantalla de Resultado/Progreso -->
+        <div id="result-screen" class="screen" role="main" aria-label="Resultado de la lección">
+            <div class="container">
+                <!-- Icono de éxito -->
+                <div class="success-icon" role="img" aria-label="Lección completada exitosamente">
+                    <svg viewBox="0 0 100 100" class="checkmark">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="4" />
+                        <path d="M30 50 L45 65 L70 35" fill="none" stroke="currentColor" stroke-width="6"
+                            stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <h2 class="result-title">🎉 ¡Capítulo Completado!</h2>
+                <p class="result-subtitle">Has terminado este capítulo exitosamente. ¡Continúa al siguiente!</p>
+
+                <!-- Progreso del capítulo -->
+                <div class="chapter-progress-section">
+                    <h3>Progreso del capítulo</h3>
+                    <div class="progress-bar-container" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                        aria-valuemax="100" aria-label="Progreso del capítulo">
+                        <div class="progress-bar filled" style="width: 75%"></div>
+                    </div>
+                    <p class="progress-text">3 de 4 lecciones completadas</p>
+                </div>
+
+                <!-- Estadísticas -->
+                <div class="stats-container" role="group" aria-label="Estadísticas de aprendizaje">
+                    <div class="stat-box">
+                        <div class="stat-number" aria-label="12 señas aprendidas">12</div>
+                        <div class="stat-label">Señas aprendidas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" aria-label="85 por ciento de precisión">85%</div>
+                        <div class="stat-label">Precisión</div>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="next-level-btn">Siguiente capítulo</button>
+                    <button class="btn btn-secondary" id="view-progress-map-btn">Ver mapa de avance</button>
+                </div>
+
+                <button class="text-link" id="retry-lesson-btn">Reintentar lección</button>
+            </div>
+        </div>
+
+        <!-- Pantalla de Mapa de Avance - DISEÑO PROFESIONAL TIPO JUEGO -->
+        <div id="progress-map-screen" class="screen" role="main" aria-label="Mapa de progreso">
+            <div class="container progress-map-container">
+                <!-- Header del mapa -->
+                <div class="map-header">
+                    <div class="map-header-icon">🗺️</div>
+                    <h2 class="screen-title">Tu Aventura</h2>
+                    <p class="screen-subtitle">Descubre cada capítulo de la historia</p>
+                </div>
+
+                <!-- Camino del mapa estilo juego -->
+                <div class="game-path" role="list" aria-label="Capítulos disponibles">
+
+                    <!-- Capítulo 1 - Completado -->
+                    <div class="path-node completed" data-chapter="0" role="listitem" tabindex="0">
+                        <div class="node-connector top-connector"></div>
+                        <div class="node-circle">
+                            <span class="node-number">1</span>
+                            <div class="node-check">✓</div>
+                        </div>
+                        <div class="node-card">
+                            <div class="node-icon">🏫</div>
+                            <div class="node-content">
+                                <h3>Encuentro en la Escuela</h3>
+                                <div class="node-progress-container">
+                                    <div class="node-progress-bar" style="width: 100%"></div>
+                                </div>
+                                <span class="node-badge completed-badge">
+                                    <span class="badge-icon">⭐</span> Completado
+                                </span>
+                            </div>
+                        </div>
+                        <div class="node-connector bottom-connector"></div>
+                    </div>
+
+                    <!-- Capítulo 2 - En progreso -->
+                    <div class="path-node in-progress current" data-chapter="1" role="listitem" tabindex="0">
+                        <div class="node-connector top-connector"></div>
+                        <div class="node-circle pulsing">
+                            <span class="node-number">2</span>
+                        </div>
+                        <div class="node-card">
+                            <div class="node-icon">🌳</div>
+                            <div class="node-content">
+                                <h3>Encuentro en el Parque</h3>
+                                <div class="node-progress-container">
+                                    <div class="node-progress-bar" style="width: 60%"></div>
+                                </div>
+                                <span class="node-badge progress-badge">
+                                    <span class="badge-icon">🎯</span> En progreso
+                                </span>
+                            </div>
+                        </div>
+                        <div class="node-connector bottom-connector inactive"></div>
+                    </div>
+
+                    <!-- Capítulo 3 - Disponible -->
+                    <div class="path-node available" data-chapter="2" role="listitem" tabindex="0">
+                        <div class="node-connector top-connector inactive"></div>
+                        <div class="node-circle">
+                            <span class="node-number">3</span>
+                        </div>
+                        <div class="node-card">
+                            <div class="node-icon">💼</div>
+                            <div class="node-content">
+                                <h3>Inclusión en el Trabajo</h3>
+                                <div class="node-progress-container">
+                                    <div class="node-progress-bar" style="width: 0%"></div>
+                                </div>
+                                <span class="node-badge available-badge">
+                                    <span class="badge-icon">🔓</span> Disponible
+                                </span>
+                            </div>
+                        </div>
+                        <div class="node-connector bottom-connector inactive"></div>
+                    </div>
+
+                    <!-- Capítulo 4 - Disponible -->
+                    <div class="path-node available" data-chapter="3" role="listitem" tabindex="0">
+                        <div class="node-connector top-connector inactive"></div>
+                        <div class="node-circle">
+                            <span class="node-number">4</span>
+                        </div>
+                        <div class="node-card">
+                            <div class="node-icon">👨‍👩‍👧</div>
+                            <div class="node-content">
+                                <h3>Familia y Amistad</h3>
+                                <div class="node-progress-container">
+                                    <div class="node-progress-bar" style="width: 0%"></div>
+                                </div>
+                                <span class="node-badge available-badge">
+                                    <span class="badge-icon">🔓</span> Disponible
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de estadísticas mejorado -->
+                <div class="stats-panel" role="group" aria-label="Estadísticas">
+                    <div class="stat-item">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-value">1<span class="stat-total">/4</span></div>
+                        <div class="stat-name">Capítulos</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🤟</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-name">Señas</div>
+                    </div>
+                   
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="map-actions">
+                    <button class="btn btn-primary play-btn" id="continue-adventure-btn">
+                        <span class="btn-icon">▶️</span>
+                        Continuar aventura
+                    </button>
+                    <a href="index.html" class="back-link" id="back-from-map-btn">← Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tooltip de ayuda -->
+        <div class="tooltip" id="help-tooltip" role="tooltip" aria-hidden="true" style="display: none;">
+            <p id="tooltip-content"></p>
+        </div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="historias.js"></script>
+</body>
+
+</html>

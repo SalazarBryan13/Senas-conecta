@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SeñasConecta - Guía de uso">
+    <title>SeñasConecta - Guía de Uso</title>
+
+    <style>
+        /* ============================================
+           SEÑASCONECTA - GUÍA DE USO
+           Paleta: Amanecer Cálido (Naranja, Amarillo, Celeste)
+           ============================================ */
+
+        /* Importar fuente */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap');
+
+        /* Paleta Amanecer */
+        :root {
+            --sunrise-orange-deep: #D35400;
+            --sunrise-orange: #E67E22;
+            --sunrise-orange-light: #F39C12;
+            --sunrise-yellow: #F1C40F;
+            --sunrise-yellow-light: #F9E79F;
+            --sunrise-peach: #FDEBD0;
+            --sunrise-sky: #85C1E9;
+            --sunrise-sky-light: #AED6F1;
+            --sunrise-sky-deep: #5DADE2;
+            --sunrise-cream: #FFF9E6;
+            --sunrise-text: #5D4E37;
+            --sunrise-success: #58D68D;
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fondo Amanecer */
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 70% 30%, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(241, 196, 15, 0.6) 0%, rgba(243, 156, 18, 0.3) 20%, transparent 50%),
+                linear-gradient(180deg,
+                    #5DADE2 0%,
+                    #85C1E9 10%,
+                    #AED6F1 20%,
+                    #FDEBD0 35%,
+                    #F9E79F 45%,
+                    #F7DC6F 55%,
+                    #F39C12 70%,
+                    #E67E22 85%,
+                    #D35400 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1.5rem;
+        }
+
+        /* Rayos de sol */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200%;
+            height: 60%;
+            background:
+                conic-gradient(from 0deg at 50% 100%,
+                    transparent 0deg,
+                    rgba(255, 200, 100, 0.15) 10deg,
+                    transparent 20deg,
+                    rgba(255, 200, 100, 0.1) 30deg,
+                    transparent 40deg,
+                    rgba(255, 200, 100, 0.15) 50deg,
+                    transparent 60deg,
+                    rgba(255, 200, 100, 0.1) 70deg,
+                    transparent 80deg,
+                    rgba(255, 200, 100, 0.15) 90deg,
+                    transparent 100deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            width: 100%;
+            max-width: 520px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(255, 249, 230, 0.98) 50%,
+                    rgba(253, 235, 208, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 2rem;
+            box-shadow:
+                0 20px 60px rgba(211, 84, 0, 0.25),
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(241, 196, 15, 0.3);
+            animation: containerEnter 0.5s ease-out;
+        }
+
+        @keyframes containerEnter {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Título principal */
+        .screen-title {
+            font-family: 'Fredoka One', 'Nunito', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--sunrise-orange-deep);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(211, 84, 0, 0.15);
+        }
+
+        .screen-title span {
+            display: block;
+            font-size: 0.9rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            color: var(--sunrise-text);
+            margin-top: 0.5rem;
+        }
+
+        /* Secciones de guía */
+        .guide-section {
+            background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFFBF0 100%);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .guide-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.2);
+        }
+
+        .guide-section h3 {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 1.1rem;
+            color: var(--sunrise-orange);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .guide-section h3 .icon {
+            font-size: 1.3rem;
+        }
+
+        .guide-section p {
+            color: var(--sunrise-text);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Listas */
+        .guide-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guide-list li {
+            color: var(--sunrise-text);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .guide-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        .guide-list li strong {
+            color: var(--sunrise-orange-deep);
+        }
+
+        /* Tarjetas de modo */
+        .mode-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .mode-card {
+            background: linear-gradient(135deg, white 0%, var(--sunrise-yellow-light) 100%);
+            border: 2px solid var(--sunrise-orange-light);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .mode-card .mode-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mode-card .mode-name {
+            font-weight: 700;
+            color: var(--sunrise-orange-deep);
+            font-size: 0.9rem;
+        }
+
+        .mode-card .mode-desc {
+            font-size: 0.75rem;
+            color: var(--sunrise-text);
+            margin-top: 0.25rem;
+        }
+
+        /* Teclas de teclado */
+        .keyboard-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .key-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        kbd {
+            background: linear-gradient(135deg, white 0%, var(--sunrise-yellow-light) 100%);
+            border: 2px solid var(--sunrise-orange-light);
+            border-radius: 8px;
+            padding: 0.4rem 0.75rem;
+            font-family: 'Nunito', monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--sunrise-orange-deep);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .key-description {
+            color: var(--sunrise-text);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Botón volver */
+        .back-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg,
+                    var(--sunrise-orange-light) 0%,
+                    var(--sunrise-orange) 50%,
+                    var(--sunrise-orange-deep) 100%);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(211, 84, 0, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(211, 84, 0, 0.45);
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1 class="screen-title">
+                📖 Guía de SeñasConecta
+                <span>Todo lo que necesitas saber para aprender lengua de señas</span>
+            </h1>
+
+            <!-- ¿Qué es SeñasConecta? -->
+            <div class="guide-section">
+                <h3><span class="icon">🤟</span> ¿Qué es SeñasConecta?</h3>
+                <p>
+                    <strong>SeñasConecta</strong> es una aplicación educativa e interactiva diseñada para enseñarte
+                    <strong>Lengua de Señas Mexicana (LSM)</strong> de manera divertida y práctica. A través de
+                    historias
+                    inmersivas y lecciones interactivas, podrás comunicarte mejor con personas sordas y comprender su
+                    cultura.
+                </p>
+            </div>
+
+            <!-- Modos de aprendizaje -->
+            <div class="guide-section">
+                <h3><span class="icon">🎮</span> Modos de aprendizaje</h3>
+                <div class="mode-cards">
+                    <div class="mode-card">
+                        <div class="mode-icon">📚</div>
+                        <div class="mode-name">Modo Historia</div>
+                        <div class="mode-desc">Vive aventuras interactivas mientras aprendes señas en contexto</div>
+                    </div>
+                    <div class="mode-card">
+                        <div class="mode-icon">🤲</div>
+                        <div class="mode-name">Señas Básicas</div>
+                        <div class="mode-desc">Practica 13 señas esenciales con videos reales</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cómo funciona -->
+            <div class="guide-section">
+                <h3><span class="icon">⚡</span> ¿Cómo funciona?</h3>
+                <ul class="guide-list">
+                    <li><strong>Observa el video:</strong> Mira cómo se realiza cada seña con atención.</li>
+                    <li><strong>Selecciona la respuesta:</strong> Elige el significado correcto de la seña.</li>
+                    <li><strong>Recibe feedback:</strong> Sabrás inmediatamente si acertaste.</li>
+                    <li><strong>Avanza a tu ritmo:</strong> Tu progreso se guarda automáticamente.</li>
+                </ul>
+            </div>
+
+            <!-- Controles del teclado -->
+            <div class="guide-section">
+                <h3><span class="icon">⌨️</span> Controles del teclado</h3>
+                <p style="margin-bottom: 0.75rem;">Navega por la aplicación usando estas 4 teclas:</p>
+                <div class="keyboard-controls">
+                    <div class="key-item">
+                        <kbd>Tab</kbd>
+                        <span class="key-description">Siguiente elemento</span>
+                    </div>
+                    <div class="key-item">
+                        <kbd>BloqMayus</kbd>
+                        <span class="key-description">Elemento anterior</span>
+                    </div>
+                    <div class="key-item">
+                        <kbd>Enter</kbd>
+                        <span class="key-description">Seleccionar / Confirmar</span>
+                    </div>
+                    <div class="key-item">
+                        <kbd>Esc</kbd>
+                        <span class="key-description">Volver / Cancelar</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Características -->
+            <div class="guide-section">
+                <h3><span class="icon">✨</span> Características principales</h3>
+                <ul class="guide-list">
+                    <li><strong>Videos reales:</strong> Aprende con demostraciones auténticas de señas.</li>
+                    <li><strong>Progreso guardado:</strong> Continúa donde te quedaste en cualquier momento.</li>
+                    <li><strong>Ayuda contextual:</strong> Toca el botón "?" para recibir consejos.</li>
+                    <li><strong>Estadísticas:</strong> Visualiza tu precisión y señas aprendidas.</li>
+                    <li><strong>Diseño accesible:</strong> Interfaz clara y fácil de usar para todos.</li>
+                </ul>
+            </div>
+
+            <!-- Respeto e inclusión -->
+            <div class="guide-section">
+                <h3><span class="icon">❤️</span> Respeto e inclusión</h3>
+                <p>
+                    La lengua de señas es más que un idioma: es parte fundamental de la
+                    <strong>cultura de la comunidad sorda</strong>. Aprende con respeto, paciencia y empatía.
+                    Recuerda que cada seña que aprendes es un puente hacia una comunicación más inclusiva.
+                </p>
+            </div>
+
+            <!-- Botón volver -->
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+        </div>
+    </main>
+</body>
+
+</html>

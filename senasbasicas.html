@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SeñasConecta - Aprende señas básicas">
+    <title>SeñasConecta - Señas Básicas</title>
+
+    <style>
+        /* ============================================
+           SEÑASCONECTA - SEÑAS BÁSICAS
+           Paleta: Amanecer Cálido (Naranja, Amarillo, Celeste)
+           ============================================ */
+
+        /* Importar fuente */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap');
+
+        /* Paleta Amanecer */
+        :root {
+            --sunrise-orange-deep: #D35400;
+            --sunrise-orange: #E67E22;
+            --sunrise-orange-light: #F39C12;
+            --sunrise-yellow: #F1C40F;
+            --sunrise-yellow-light: #F9E79F;
+            --sunrise-peach: #FDEBD0;
+            --sunrise-sky: #85C1E9;
+            --sunrise-sky-light: #AED6F1;
+            --sunrise-sky-deep: #5DADE2;
+            --sunrise-cream: #FFF9E6;
+            --sunrise-text: #5D4E37;
+            --sunrise-success: #58D68D;
+            --sunrise-error: #E74C3C;
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fondo Amanecer */
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 70% 30%, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(241, 196, 15, 0.6) 0%, rgba(243, 156, 18, 0.3) 20%, transparent 50%),
+                linear-gradient(180deg,
+                    #5DADE2 0%,
+                    #85C1E9 10%,
+                    #AED6F1 20%,
+                    #FDEBD0 35%,
+                    #F9E79F 45%,
+                    #F7DC6F 55%,
+                    #F39C12 70%,
+                    #E67E22 85%,
+                    #D35400 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1.5rem;
+        }
+
+        /* Rayos de sol */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200%;
+            height: 60%;
+            background:
+                conic-gradient(from 0deg at 50% 100%,
+                    transparent 0deg,
+                    rgba(255, 200, 100, 0.15) 10deg,
+                    transparent 20deg,
+                    rgba(255, 200, 100, 0.1) 30deg,
+                    transparent 40deg,
+                    rgba(255, 200, 100, 0.15) 50deg,
+                    transparent 60deg,
+                    rgba(255, 200, 100, 0.1) 70deg,
+                    transparent 80deg,
+                    rgba(255, 200, 100, 0.15) 90deg,
+                    transparent 100deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(255, 249, 230, 0.98) 50%,
+                    rgba(253, 235, 208, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 1.75rem;
+            box-shadow:
+                0 20px 60px rgba(211, 84, 0, 0.25),
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(241, 196, 15, 0.3);
+            animation: containerEnter 0.5s ease-out;
+        }
+
+        @keyframes containerEnter {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Título */
+        .screen-title {
+            font-family: 'Fredoka One', 'Nunito', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--sunrise-orange-deep);
+            text-align: center;
+            margin-bottom: 1.25rem;
+            text-shadow: 0 2px 4px rgba(211, 84, 0, 0.15);
+        }
+
+        /* Barra de progreso */
+        .lesson-progress {
+            background: linear-gradient(180deg, #FFF9E6 0%, #F9E79F 100%);
+            border-radius: 20px;
+            padding: 4px;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .lesson-progress .progress-bar {
+            background: linear-gradient(90deg,
+                    var(--sunrise-yellow) 0%,
+                    var(--sunrise-orange-light) 50%,
+                    var(--sunrise-orange) 100%);
+            border-radius: 16px;
+            height: 14px;
+            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.5);
+            width: 20%;
+            transition: width 0.5s ease;
+        }
+
+        .lesson-progress .progress-text {
+            color: var(--sunrise-orange-deep);
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: block;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        /* Área de ilustración */
+        .sign-illustration-area {
+            background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFFBF0 100%);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.25rem;
+            text-align: center;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Video de la seña */
+        .sign-video-container {
+            width: 100%;
+            max-width: 280px;
+            margin-bottom: 0.75rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            background: #000;
+        }
+
+        .sign-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .sign-emoji {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sign-description {
+            color: var(--sunrise-orange);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Botón replay */
+        .replay-btn {
+            background: linear-gradient(135deg, var(--sunrise-sky-light) 0%, var(--sunrise-sky) 100%);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 3px 10px rgba(93, 173, 226, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .replay-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Instrucción */
+        .instruction-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFFBF0 100%);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-left: 4px solid var(--sunrise-orange);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .instruction-text {
+            flex: 1;
+            color: var(--sunrise-text);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Botón de ayuda */
+        .help-button-inline {
+            background: linear-gradient(135deg, var(--sunrise-sky-light) 0%, var(--sunrise-sky) 100%);
+            border: 2px solid var(--sunrise-sky-deep);
+            border-radius: 50%;
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(93, 173, 226, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .help-button-inline:hover {
+            transform: scale(1.1);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--sunrise-sky-deep) 0%, var(--sunrise-sky) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            max-width: 320px;
+            width: 90%;
+            z-index: 9999;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: tooltipAppear 0.3s ease-out;
+            border: 2px solid var(--sunrise-sky-light);
+        }
+
+        .tooltip.active {
+            display: block;
+        }
+
+        .tooltip-title {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--sunrise-yellow);
+        }
+
+        .tooltip p {
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        @keyframes tooltipAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Opciones de respuesta */
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .answer-option {
+            background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFFBF0 100%);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-radius: 14px;
+            color: var(--sunrise-text);
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 1rem 1.25rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--sunrise-orange);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .answer-option:hover:not(:disabled) {
+            border-color: var(--sunrise-orange);
+            background: linear-gradient(135deg, #FFF 0%, var(--sunrise-yellow-light) 100%);
+            transform: translateX(6px);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.25);
+        }
+
+        .answer-option:hover::before {
+            opacity: 1;
+        }
+
+        .answer-option.selected {
+            background: linear-gradient(135deg, var(--sunrise-orange) 0%, var(--sunrise-orange-deep) 100%);
+            border-color: var(--sunrise-orange-deep);
+            color: white;
+            box-shadow: 0 6px 20px rgba(211, 84, 0, 0.4);
+        }
+
+        .answer-option.selected::before {
+            opacity: 1;
+            background: var(--sunrise-yellow);
+        }
+
+        .answer-option.correct {
+            background: linear-gradient(135deg, var(--sunrise-success) 0%, #48BB78 100%);
+            border-color: #27AE60;
+            color: white;
+        }
+
+        .answer-option.incorrect {
+            background: linear-gradient(135deg, var(--sunrise-error) 0%, #C0392B 100%);
+            border-color: #C0392B;
+            color: white;
+        }
+
+        .answer-option:disabled {
+            cursor: not-allowed;
+        }
+
+        /* Feedback */
+        .feedback-message {
+            display: none;
+            background: var(--sunrise-cream);
+            border: 2px solid var(--sunrise-yellow-light);
+            border-left: 4px solid var(--sunrise-orange);
+            border-radius: 14px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .feedback-message.active {
+            display: block;
+        }
+
+        .feedback-message.success {
+            border-left-color: var(--sunrise-success);
+            background: linear-gradient(135deg, #F0FFF4 0%, #D5F5E3 100%);
+        }
+
+        .feedback-message.error {
+            border-left-color: var(--sunrise-error);
+            background: linear-gradient(135deg, #FFF5F5 0%, #FADBD8 100%);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Botón primario */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg,
+                    var(--sunrise-orange-light) 0%,
+                    var(--sunrise-orange) 50%,
+                    var(--sunrise-orange-deep) 100%);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(211, 84, 0, 0.35);
+            transition: all 0.25s ease;
+            margin-top: 0.75rem;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(211, 84, 0, 0.45);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Botón volver */
+        .back-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: transparent;
+            border: 2px solid var(--sunrise-orange);
+            border-radius: 12px;
+            color: var(--sunrise-orange-deep);
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            margin-top: 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .back-link:hover {
+            background: var(--sunrise-orange);
+            color: white;
+        }
+
+        /* Pantalla de resultados */
+        .result-container {
+            text-align: center;
+        }
+
+        .result-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 1.8rem;
+            color: var(--sunrise-success);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-subtitle {
+            color: var(--sunrise-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-panel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, var(--sunrise-cream) 100%);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--sunrise-yellow-light);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--sunrise-orange-deep);
+        }
+
+        .stat-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--sunrise-text);
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, transparent 0%, var(--sunrise-orange-light) 50%, transparent 100%);
+        }
+
+        /* Ocultar pantallas */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Utilidades */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <!-- Pantalla de Lección -->
+        <div id="lesson-screen" class="screen active">
+            <div class="container">
+                <h2 class="screen-title">🤟 Lección: Saludos básicos</h2>
+
+                <!-- Indicador de progreso -->
+                <div class="lesson-progress" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <div class="progress-bar" id="lesson-progress-bar"></div>
+                    <span class="progress-text" id="progress-text">Lección 1 de 5</span>
+                </div>
+
+                <!-- Área de video de la seña -->
+                <div class="sign-illustration-area">
+                    <div class="sign-video-container">
+                        <video class="sign-video" id="sign-video" controls loop playsinline>
+                            <source src="assets/videos/signs/hola.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                    <p class="sign-description" id="sign-description">Seña: Hola</p>
+                </div>
+
+                <!-- Instrucción -->
+                <div class="instruction-container">
+                    <p class="instruction-text">Selecciona el significado correcto</p>
+                    <button class="help-button-inline" id="help-btn" aria-label="Mostrar ayuda">
+                        <span aria-hidden="true">?</span>
+                    </button>
+                </div>
+
+                <!-- Opciones de respuesta -->
+                <div class="answer-options" id="answer-options" role="radiogroup" aria-label="Opciones de respuesta">
+                    <button class="answer-option" data-answer="hola">
+                        👋 Hola
+                    </button>
+                    <button class="answer-option" data-answer="gracias">
+                        🙏 Gracias
+                    </button>
+                    <button class="answer-option" data-answer="adios">
+                        👋 Adiós
+                    </button>
+                </div>
+
+                <!-- Feedback -->
+                <div class="feedback-message" id="feedback-message">
+                    <p id="feedback-text"></p>
+                </div>
+
+                <!-- Botones -->
+                <button class="btn-primary" id="continue-btn" disabled>
+                    Continuar
+                </button>
+
+                <a href="index.html" class="back-link">← Volver al inicio</a>
+            </div>
+        </div>
+
+        <!-- Pantalla de Resultados -->
+        <div id="result-screen" class="screen">
+            <div class="container result-container">
+                <div class="result-emoji">🎉</div>
+                <h2 class="result-title">¡Felicidades!</h2>
+                <p class="result-subtitle">Has completado todas las 13 señas básicas en lengua de señas. ¡Excelente
+                    trabajo!</p>
+
+                <!-- Estadísticas -->
+                <div class="stats-panel">
+                    <div class="stat-item">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="correct-count">0</div>
+                        <div class="stat-name">Correctas</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🤟</div>
+                        <div class="stat-value" id="signs-learned">13</div>
+                        <div class="stat-name">Señas aprendidas</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value" id="accuracy">0%</div>
+                        <div class="stat-name">Precisión</div>
+                    </div>
+                </div>
+
+                <!-- Solo botón volver -->
+                <a href="index.html" class="back-link" style="margin-top: 1.5rem;">← Volver al inicio</a>
+            </div>
+        </div>
+
+        <!-- Tooltip de ayuda -->
+        <div class="tooltip" id="help-tooltip">
+            <div class="tooltip-title">💡 Consejo</div>
+            <p id="tooltip-content">Observa el movimiento de la mano. La seña "Hola" se hace levantando la mano abierta
+                y moviéndola de lado a lado.</p>
+        </div>
+    </main>
+
+    <script>
+        // ============================================
+        // SEÑAS BÁSICAS - JavaScript
+        // ============================================
+
+        // Datos de las señas - Todos los 13 videos
+        const lessons = [
+            {
+                video: 'assets/videos/signs/hola.mp4',
+                sign: 'Hola',
+                correct: 'hola',
+                options: [
+                    { text: '👋 Hola', value: 'hola' },
+                    { text: '🙏 Gracias', value: 'gracias' },
+                    { text: '👋 Adiós', value: 'adios' }
+                ],
+                help: 'La seña "Hola" se hace levantando la mano abierta y moviéndola de lado a lado.',
+                feedback: {
+                    correct: '¡Correcto! 👋 Esta es la seña para "Hola".',
+                    incorrect: 'Incorrecto. La seña que ves es "Hola".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/gracias.mp4',
+                sign: 'Gracias',
+                correct: 'gracias',
+                options: [
+                    { text: '🙏 Gracias', value: 'gracias' },
+                    { text: '👋 Hola', value: 'hola' },
+                    { text: '🙏 Por favor', value: 'porfavor' }
+                ],
+                help: 'La seña "Gracias" se hace llevando la mano desde la barbilla hacia afuera.',
+                feedback: {
+                    correct: '¡Excelente! 🙏 Esta es la seña para "Gracias".',
+                    incorrect: 'Incorrecto. Esta seña significa "Gracias".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/adios.mp4',
+                sign: 'Adiós',
+                correct: 'adios',
+                options: [
+                    { text: '👋 Adiós', value: 'adios' },
+                    { text: '👋 Hola', value: 'hola' },
+                    { text: '🙏 Por favor', value: 'porfavor' }
+                ],
+                help: 'La seña "Adiós" es un gesto de despedida con la mano abierta.',
+                feedback: {
+                    correct: '¡Muy bien! 👋 Esta es la seña para "Adiós".',
+                    incorrect: 'Incorrecto. Esta seña significa "Adiós".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/por-favor.mp4',
+                sign: 'Por favor',
+                correct: 'porfavor',
+                options: [
+                    { text: '🙏 Por favor', value: 'porfavor' },
+                    { text: '🙏 Gracias', value: 'gracias' },
+                    { text: '👋 Permiso', value: 'permiso' }
+                ],
+                help: 'La seña "Por favor" se hace con las manos juntas moviéndose hacia adelante.',
+                feedback: {
+                    correct: '¡Correcto! 🙏 Esta es la seña para "Por favor".',
+                    incorrect: 'Incorrecto. Esta seña significa "Por favor".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/comoEstas.mp4',
+                sign: '¿Cómo estás?',
+                correct: 'comoestas',
+                options: [
+                    { text: '👋 ¿Cómo estás?', value: 'comoestas' },
+                    { text: '� Está bien', value: 'estabien' },
+                    { text: '👋 Hola', value: 'hola' }
+                ],
+                help: 'La seña "¿Cómo estás?" es una pregunta común para saludar.',
+                feedback: {
+                    correct: '¡Perfecto! 👋 Esta es la seña para "¿Cómo estás?".',
+                    incorrect: 'Incorrecto. Esta seña significa "¿Cómo estás?".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/estaBien.mp4',
+                sign: 'Está bien',
+                correct: 'estabien',
+                options: [
+                    { text: '👍 Está bien', value: 'estabien' },
+                    { text: '👋 ¿Cómo estás?', value: 'comoestas' },
+                    { text: '🙏 Gracias', value: 'gracias' }
+                ],
+                help: 'La seña "Está bien" indica conformidad o aceptación.',
+                feedback: {
+                    correct: '¡Excelente! 👍 Esta es la seña para "Está bien".',
+                    incorrect: 'Incorrecto. Esta seña significa "Está bien".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/perdon.mp4',
+                sign: 'Perdón',
+                correct: 'perdon',
+                options: [
+                    { text: '🙏 Perdón', value: 'perdon' },
+                    { text: '🙏 Por favor', value: 'porfavor' },
+                    { text: '🙏 Gracias', value: 'gracias' }
+                ],
+                help: 'La seña "Perdón" se usa para disculparse.',
+                feedback: {
+                    correct: '¡Correcto! 🙏 Esta es la seña para "Perdón".',
+                    incorrect: 'Incorrecto. Esta seña significa "Perdón".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/despacio.mp4',
+                sign: 'Despacio',
+                correct: 'despacio',
+                options: [
+                    { text: '⏳ Despacio', value: 'despacio' },
+                    { text: '⏱️ Rápido', value: 'rapido' },
+                    { text: '⏸️ Espera', value: 'espera' }
+                ],
+                help: 'La seña "Despacio" indica que algo debe hacerse lentamente.',
+                feedback: {
+                    correct: '¡Muy bien! ⏳ Esta es la seña para "Despacio".',
+                    incorrect: 'Incorrecto. Esta seña significa "Despacio".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/dónde.mp4',
+                sign: '¿Dónde?',
+                correct: 'donde',
+                options: [
+                    { text: '📍 ¿Dónde?', value: 'donde' },
+                    { text: '❓ ¿Qué?', value: 'que' },
+                    { text: '👤 ¿Quién?', value: 'quien' }
+                ],
+                help: 'La seña "¿Dónde?" se usa para preguntar por ubicación.',
+                feedback: {
+                    correct: '¡Perfecto! 📍 Esta es la seña para "¿Dónde?".',
+                    incorrect: 'Incorrecto. Esta seña significa "¿Dónde?".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/cuándo.mp4',
+                sign: '¿Cuándo?',
+                correct: 'cuando',
+                options: [
+                    { text: '⏰ ¿Cuándo?', value: 'cuando' },
+                    { text: '📍 ¿Dónde?', value: 'donde' },
+                    { text: '❓ ¿Por qué?', value: 'porque' }
+                ],
+                help: 'La seña "¿Cuándo?" se usa para preguntar por el tiempo.',
+                feedback: {
+                    correct: '¡Excelente! ⏰ Esta es la seña para "¿Cuándo?".',
+                    incorrect: 'Incorrecto. Esta seña significa "¿Cuándo?".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/quién.mp4',
+                sign: '¿Quién?',
+                correct: 'quien',
+                options: [
+                    { text: '👤 ¿Quién?', value: 'quien' },
+                    { text: '❓ ¿Qué?', value: 'que' },
+                    { text: '📍 ¿Dónde?', value: 'donde' }
+                ],
+                help: 'La seña "¿Quién?" se usa para preguntar por una persona.',
+                feedback: {
+                    correct: '¡Correcto! 👤 Esta es la seña para "¿Quién?".',
+                    incorrect: 'Incorrecto. Esta seña significa "¿Quién?".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/por-qué.mp4',
+                sign: '¿Por qué?',
+                correct: 'porque',
+                options: [
+                    { text: '❓ ¿Por qué?', value: 'porque' },
+                    { text: '⏰ ¿Cuándo?', value: 'cuando' },
+                    { text: '👤 ¿Quién?', value: 'quien' }
+                ],
+                help: 'La seña "¿Por qué?" se usa para preguntar la razón de algo.',
+                feedback: {
+                    correct: '¡Muy bien! ❓ Esta es la seña para "¿Por qué?".',
+                    incorrect: 'Incorrecto. Esta seña significa "¿Por qué?".'
+                }
+            },
+            {
+                video: 'assets/videos/signs/porFavorNecesitoInformacion.mp4',
+                sign: 'Por favor, necesito información',
+                correct: 'necesitoinformacion',
+                options: [
+                    { text: '📝 Necesito información', value: 'necesitoinformacion' },
+                    { text: '❓ ¿Puedes ayudarme?', value: 'ayuda' },
+                    { text: '🙏 Por favor', value: 'porfavor' }
+                ],
+                help: 'Esta frase combina "Por favor" con "Necesito información".',
+                feedback: {
+                    correct: '¡Excelente! 📝 Esta es la seña para "Por favor, necesito información".',
+                    incorrect: 'Incorrecto. Esta seña significa "Por favor, necesito información".'
+                }
+            }
+        ];
+
+        // Estado del juego
+        let currentLesson = 0;
+        let correctAnswers = 0;
+        let selectedAnswer = null;
+
+        // Elementos del DOM
+        const lessonScreen = document.getElementById('lesson-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const signVideo = document.getElementById('sign-video');
+        const signDescription = document.getElementById('sign-description');
+        const answerOptions = document.getElementById('answer-options');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const feedbackText = document.getElementById('feedback-text');
+        const continueBtn = document.getElementById('continue-btn');
+        const progressBar = document.getElementById('lesson-progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const helpBtn = document.getElementById('help-btn');
+        const helpTooltip = document.getElementById('help-tooltip');
+        const tooltipContent = document.getElementById('tooltip-content');
+
+        // Inicializar
+        function init() {
+            loadLesson(currentLesson);
+            setupEventListeners();
+        }
+
+        // Cargar lección
+        function loadLesson(index) {
+            const lesson = lessons[index];
+
+            // Cargar video
+            signVideo.src = lesson.video;
+            signVideo.load();
+            signVideo.play();
+
+            signDescription.textContent = `Seña: ${lesson.sign}`;
+            tooltipContent.textContent = lesson.help;
+
+            // Limpiar opciones anteriores
+            answerOptions.innerHTML = '';
+
+            // Crear opciones
+            lesson.options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-option';
+                btn.setAttribute('data-answer', option.value);
+                btn.textContent = option.text;
+                btn.addEventListener('click', () => handleAnswer(btn, option.value));
+                answerOptions.appendChild(btn);
+            });
+
+            // Actualizar progreso
+            const progress = ((index + 1) / lessons.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `Lección ${index + 1} de ${lessons.length}`;
+
+            // Resetear estado
+            selectedAnswer = null;
+            feedbackMessage.classList.remove('active', 'success', 'error');
+            continueBtn.disabled = true;
+        }
+
+        // Manejar respuesta
+        function handleAnswer(button, answer) {
+            if (selectedAnswer !== null) return;
+
+            selectedAnswer = answer;
+            const lesson = lessons[currentLesson];
+            const isCorrect = answer === lesson.correct;
+
+            // Deshabilitar todas las opciones
+            document.querySelectorAll('.answer-option').forEach(btn => {
+                btn.disabled = true;
+            });
+
+            // Marcar respuesta
+            button.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+            // Si es incorrecta, mostrar la correcta
+            if (!isCorrect) {
+                document.querySelector(`[data-answer="${lesson.correct}"]`).classList.add('correct');
+            } else {
+                correctAnswers++;
+            }
+
+            // Mostrar feedback
+            feedbackText.textContent = isCorrect ? lesson.feedback.correct : lesson.feedback.incorrect;
+            feedbackMessage.classList.add('active', isCorrect ? 'success' : 'error');
+
+            // Habilitar continuar
+            continueBtn.disabled = false;
+        }
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            continueBtn.addEventListener('click', () => {
+                currentLesson++;
+                if (currentLesson < lessons.length) {
+                    loadLesson(currentLesson);
+                } else {
+                    showResults();
+                }
+            });
+
+            helpBtn.addEventListener('click', () => {
+                helpTooltip.classList.toggle('active');
+                setTimeout(() => {
+                    helpTooltip.classList.remove('active');
+                }, 4000);
+            });
+        }
+
+        // Mostrar resultados
+        function showResults() {
+            lessonScreen.classList.remove('active');
+            resultScreen.classList.add('active');
+
+            document.getElementById('correct-count').textContent = correctAnswers;
+            document.getElementById('signs-learned').textContent = lessons.length;
+            document.getElementById('accuracy').textContent = `${Math.round((correctAnswers / lessons.length) * 100)}%`;
+        }
+
+        // Iniciar
+        init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SeñasConecta - Aprende lengua de señas a través de historias interactivas">
+    <title>SeñasConecta - Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Skip link para navegación por teclado -->
+    <a href="#main-content" class="skip-link" id="skip-link">
+        Saltar al contenido principal
+    </a>
+
+    <!-- Indicador de ayuda para teclado -->
+    <div class="keyboard-hint" id="keyboard-hint" aria-live="polite" aria-atomic="true">
+        <span>Navegación: </span>
+        <span><kbd>Tab</kbd> siguiente</span>
+        <span><kbd>BloqMayús</kbd> anterior</span>
+        <span><kbd>Enter</kbd> seleccionar</span>
+        <span><kbd>Esc</kbd> volver</span>
+    </div>
+
+    <!-- Contenido principal -->
+    <main id="main-content">
+
+        <!-- Pantalla de Inicio -->
+        <div id="home-screen" class="screen active" role="region" aria-label="Pantalla principal">
+
+            <!-- Elementos de fondo animados (Imagen 3D Generada) -->
+            <div class="bg-decoration" aria-hidden="true">
+                <!-- Se usará background-image en CSS, mantenemos div para overlay si es necesario -->
+            </div>
+
+            <div class="container">
+                <!-- Logo -->
+                <div class="logo-container" role="img" aria-label="Logo SeñasConecta">
+                    <div class="logo-square">
+                        <span class="logo-text" aria-hidden="true">SC</span>
+                    </div>
+                </div>
+
+                <!-- Título principal -->
+                <h1 class="main-title">SeñasConecta</h1>
+                <p class="tagline">Aprende lengua de señas a través de historias interactivas</p>
+
+                <!-- Botones principales -->
+                <div class="button-group" role="group" aria-label="Opciones principales">
+                    <button class="btn btn-primary" id="start-adventure-btn" aria-describedby="start-adventure-desc">
+                        Comenzar aventura
+                    </button>
+                    <span id="start-adventure-desc" class="sr-only">Inicia una historia interactiva para aprender lengua
+                        de
+                        señas</span>
+
+                    <button class="btn btn-secondary" id="continue-story-btn" style="display: none;"
+                        aria-describedby="continue-story-desc">
+                        Continuar historia
+                    </button>
+                    <span id="continue-story-desc" class="sr-only">Continúa desde donde te quedaste en la
+                        historia</span>
+
+                    <button class="btn btn-secondary" id="learn-basics-btn" aria-describedby="learn-basics-desc">
+                        Aprender señas básicas
+                    </button>
+                    <span id="learn-basics-desc" class="sr-only">Accede a lecciones básicas de lengua de señas</span>
+
+                    <button class="btn btn-secondary" id="guide-btn" aria-describedby="guide-desc">
+                        Guía de uso
+                    </button>
+                    <span id="guide-desc" class="sr-only">Aprende cómo usar la aplicación</span>
+
+                    <button class="btn btn-secondary" id="view-progress-map-home-btn" aria-describedby="view-map-desc">
+                        Ver mapa de avance
+                    </button>
+                    <span id="view-map-desc" class="sr-only">Ver tu progreso y capítulos disponibles</span>
+                </div>
+
+            </div>
+
+            <!-- Enlace de configuración (Fuera del container para posicionamiento absoluto seguro) -->
+            <a href="settings.html" class="settings-link" id="settings-link" aria-label="Configuración">
+                Configuración
+            </a>
+
+            <!-- Indicador de progreso (Fuera del container, posicionado abajo izquierda) -->
+            <div class="global-progress-indicator" id="global-progress" aria-live="polite">
+                <span class="progress-text">Progreso: <span id="progress-percentage">0%</span></span>
+            </div>
+        </div>
+
+
+        <!-- Cierre del contenido principal -->
+
+
+
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+
+</html>

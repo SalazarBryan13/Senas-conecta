@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeñasConecta - Configuración</title>
+    <!-- Mantenemos styles.css para reset y bases, pero sobreescribiremos con el tema del juego -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* =========================================
+           TEMA "GAME MENU" (Especifico de esta página)
+           ========================================= */
+
+        body {
+            /* Fondo de juego inmersivo */
+            background: radial-gradient(circle at center, #2c3e50 0%, #000000 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* El Panel Principal - Estilo "Tarjeta Flotante de Juego" */
+        .game-panel {
+            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+            /* Gradiente Azul Cyan vibrante */
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow:
+                0 10px 0 #005f73,
+                /* Sombra sólida 3D borde inferior */
+                0 20px 40px rgba(0, 0, 0, 0.5);
+            /* Sombra difusa */
+            border: 4px solid #fff;
+            position: relative;
+            text-align: center;
+            color: #fff;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Decoración de "Tornillos" en las esquinas del panel */
+        .game-panel::after,
+        .game-panel::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #d1d5db;
+            border-radius: 50%;
+            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .game-panel::before {
+            top: 15px;
+            left: 15px;
+            box-shadow: 340px 0 0 #d1d5db, inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Arriba Izq + Der */
+        .game-panel::after {
+            bottom: 15px;
+            left: 15px;
+            box-shadow: 340px 0 0 #d1d5db, inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Abajo Izq + Der */
+
+        /* Titulo del Juego */
+        .game-title {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 0px #023e8a;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .game-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            color: #e0f2fe;
+        }
+
+        /* Botones estilo "Game Button" (3D) */
+        .game-btn {
+            background: #f8fafc;
+            border: none;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #334155;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #cbd5e1;
+            /* Sombra sólida 3D */
+            transition: all 0.1s;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #cbd5e1;
+            background: #fff;
+        }
+
+        .game-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #cbd5e1;
+        }
+
+        .game-btn.primary {
+            background: #fbbf24;
+            /* Amarillo "Play" */
+            color: #78350f;
+            box-shadow: 0 4px 0 #d97706;
+        }
+
+        .game-btn.primary:hover {
+            background: #fcd34d;
+            box-shadow: 0 6px 0 #d97706;
+        }
+
+        .game-btn.primary:active {
+            box-shadow: 0 0 0 #d97706;
+        }
+
+        /* Iconos en botones */
+        .btn-icon {
+            font-size: 1.4rem;
+        }
+
+        /* Grupos de configuración */
+        .setting-row {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .setting-label {
+            font-weight: 700;
+            font-size: 1rem;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Slider Personalizado */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 120px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #fbbf24;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 0 #d97706;
+            border: 2px solid #fff;
+        }
+
+        /* Toggle Switch Personalizado */
+        .game-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .game-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .game-slider-round {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .game-slider-round:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.game-slider-round {
+            background-color: #fbbf24;
+        }
+
+        input:checked+.game-slider-round:before {
+            transform: translateX(20px);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Back Link como botón pequeño */
+        .back-btn-container {
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-panel">
+        <!-- Header -->
+        <h1 class="game-title">CONFIGURACIÓN</h1>
+        <p class="game-subtitle">Ajustes del Juego</p>
+
+        <!-- Formulario -->
+        <div class="settings-content">
+
+
+
+            <!-- Grupo Audio / Feedback -->
+            <div class="setting-row">
+                <span class="setting-label">Subtítulos</span>
+                <label class="game-switch">
+                    <input type="checkbox" id="subtitles-toggle" checked>
+                    <span class="game-slider-round"></span>
+                </label>
+            </div>
+
+            <!-- Botones -->
+            <button class="game-btn primary" id="save-settings-btn">
+                <span class="btn-icon">💾</span> GUARDAR Y SALIR
+            </button>
+
+            <div class="back-btn-container">
+                <a href="index.html" style="text-decoration: none;">
+                    <button class="game-btn">
+                        <span class="btn-icon">↩</span> SOLO SALIR
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script de Lógica Local -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Referencias a elementos
+            const subtitlesToggle = document.getElementById('subtitles-toggle');
+            const saveBtn = document.getElementById('save-settings-btn');
+
+            // Configuración por defecto
+            let currentSettings = {
+                showSubtitles: true
+            };
+
+            // Cargar configuración existente
+            try {
+                const saved = localStorage.getItem('senasconecta-settings');
+                if (saved) {
+                    currentSettings = { ...currentSettings, ...JSON.parse(saved) };
+                }
+            } catch (e) {
+                console.error("Error loading settings", e);
+            }
+
+            // Aplicar a controles UI
+            if (subtitlesToggle) {
+                subtitlesToggle.checked = currentSettings.showSubtitles;
+            }
+
+            // Guardar configuración
+            if (saveBtn) {
+                saveBtn.addEventListener('click', () => {
+                    // Actualizar objeto settings
+                    const newSettings = {
+                        ...currentSettings,
+                        showSubtitles: subtitlesToggle ? subtitlesToggle.checked : true
+                    };
+
+                    localStorage.setItem('senasconecta-settings', JSON.stringify(newSettings));
+
+                    // Efecto visual y salida
+                    saveBtn.innerHTML = '<span class="btn-icon">✅</span> ¡GUARDADO!';
+                    saveBtn.style.background = '#10B981'; // Green
+
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 500);
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
