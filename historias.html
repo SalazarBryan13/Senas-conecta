@@ -202,42 +202,18 @@
 
 
         /* ===============================
-           ÁREA DE ILUSTRACIÓN
-           =============================== */
-        .scene-illustration-area {
-            margin-bottom: 1.25rem;
-        }
-
-        .scene-image {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .scene-visual {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(211, 84, 0, 0.15);
-        }
-
-        .illustration-placeholder {
-            color: var(--sunrise-orange);
-            font-size: 0.85rem;
-            font-style: italic;
-            margin-top: 0.5rem;
-        }
-
-        /* ===============================
-           CAJA DE TEXTO/ESCENARIO
+           CAJA DE TEXTO/ESCENARIO (DESCRIPCIÓN)
+           Ahora más compacta para dar protagonismo a la imagen
            =============================== */
         .scenario-text {
-            background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFFBF0 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, var(--sunrise-cream) 100%);
             border: 2px solid var(--sunrise-yellow-light);
-            border-left: 4px solid var(--sunrise-orange);
-            border-radius: 16px;
-            padding: 1.25rem;
-            margin-bottom: 1.25rem;
+            border-left: 5px solid var(--sunrise-orange);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
             position: relative;
+            box-shadow: 0 2px 8px rgba(211, 84, 0, 0.08);
         }
 
         .scenario-header {
@@ -247,6 +223,143 @@
         }
 
         .scenario-text p {
+            color: var(--sunrise-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            flex: 1;
+        }
+
+        /* ===============================
+           ÁREA DE ILUSTRACIÓN - DISEÑO PROFESIONAL
+           Marco prominente para imágenes grandes
+           =============================== */
+        .scene-illustration-area {
+            margin-bottom: 1.25rem;
+        }
+
+        .scene-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Marco de imagen profesional */
+        .image-frame {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            min-height: 200px;
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.9) 0%,
+                    rgba(253, 235, 208, 0.8) 50%,
+                    rgba(249, 231, 159, 0.7) 100%);
+            border-radius: 20px;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 8px 32px rgba(211, 84, 0, 0.15),
+                0 4px 16px rgba(0, 0, 0, 0.08),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Borde degradado elegante */
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 22px;
+            background: linear-gradient(135deg,
+                    var(--sunrise-orange-light) 0%,
+                    var(--sunrise-yellow) 50%,
+                    var(--sunrise-sky-light) 100%);
+            z-index: -1;
+        }
+
+        /* Efecto de brillo sutil */
+        .image-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.3) 0%,
+                    transparent 100%);
+            border-radius: 18px 18px 0 0;
+            pointer-events: none;
+        }
+
+        .image-frame:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 40px rgba(211, 84, 0, 0.2),
+                0 6px 20px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Imagen de la escena */
+        .scene-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 17px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Placeholder profesional cuando no hay imagen */
+        .illustration-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: var(--sunrise-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .placeholder-icon {
+            font-size: 3rem;
+            opacity: 0.7;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .placeholder-text {
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 0.85rem;
+        }
+
+        /* Cuando hay imagen, ocultar placeholder */
+        .image-frame.has-image .illustration-placeholder {
+            display: none;
+        }
+
+        .scenario-text p.scene-description {
             color: var(--sunrise-text);
             font-size: 1rem;
             line-height: 1.75;
@@ -1079,24 +1192,7 @@
                     <span class="progress-text" id="chapter-progress-text">Escena 1 de 4</span>
                 </div>
 
-                <!-- Área de ilustración de la escena -->
-                <div class="scene-illustration-area" role="img" aria-label="Ilustración de la escena">
-                    <div class="scene-image" id="scene-image">
-                        <div class="scene-visual school-scene">
-                            <div class="school-building">
-                                <div class="roof"></div>
-                                <div class="windows">
-                                    <div class="window"></div>
-                                    <div class="window"></div>
-                                </div>
-                                <div class="door"></div>
-                            </div>
-                        </div>
-                        <p class="illustration-placeholder">[Escena ilustrada]</p>
-                    </div>
-                </div>
-
-                <!-- Texto del escenario -->
+                <!-- Texto del escenario (descripción) - ahora va primero -->
                 <div class="scenario-text" role="region" aria-label="Descripción del escenario">
                     <div class="scenario-header">
                         <p id="scenario-description">Estás en la escuela y conoces a una persona sorda. Ella intenta
@@ -1105,6 +1201,23 @@
                             aria-label="Mostrar ayuda sobre esta escena" title="¿Necesitas ayuda?">
                             <span aria-hidden="true">?</span>
                         </button>
+                    </div>
+                </div>
+
+                <!-- Área de ilustración de la escena (espacio para imagen) -->
+                <div class="scene-illustration-area" role="img" aria-label="Ilustración de la escena">
+                    <div class="scene-image" id="scene-image">
+                        <!-- Marco profesional para la imagen -->
+                        <div class="image-frame" id="image-frame">
+                            <!-- Imagen de la escena (se carga dinámicamente) -->
+                            <img class="scene-img" id="scene-img" src="" alt="Ilustración de la escena"
+                                style="display: none;">
+                            <!-- Placeholder elegante cuando no hay imagen -->
+                            <div class="illustration-placeholder" id="illustration-placeholder">
+                                <span class="placeholder-icon">🖼️</span>
+                                <span class="placeholder-text">Imagen de la escena</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1311,7 +1424,7 @@
                         <div class="stat-value">12</div>
                         <div class="stat-name">Señas</div>
                     </div>
-                   
+
                 </div>
 
                 <!-- Botones de acción -->

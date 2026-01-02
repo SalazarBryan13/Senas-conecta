@@ -28,6 +28,8 @@ const GameState = {
 };
 
 // Datos de la historia
+// Las imágenes deben colocarse en: assets/images/
+// Nomenclatura sugerida: escenaX_Y.png (X=capítulo, Y=escena)
 const StoryChapters = [
     {
         id: 1,
@@ -35,6 +37,7 @@ const StoryChapters = [
         scenes: [
             {
                 id: 1,
+                image: 'assets/images/escena1_1.png', // ← Imagen de ejemplo cargada
                 description: 'Estás en la escuela y conoces a una persona sorda. Ella intenta comunicarse contigo usando señas. ¿Qué haces?',
                 help: 'Recuerda: las personas sordas se comunican principalmente a través de la lengua de señas. Hablar en voz alta no les ayuda si no pueden escucharte.',
                 decisions: [
@@ -63,6 +66,7 @@ const StoryChapters = [
             },
             {
                 id: 2,
+                image: '', // assets/images/escena1_2.png
                 description: 'La persona sorda te pregunta si quieres aprender más señas. Te explica que la lengua de señas es su idioma natural. ¿Qué respondes?',
                 help: 'La lengua de señas no es solo gestos, es un idioma completo con su propia gramática y estructura. Aprenderla muestra respeto y empatía.',
                 decisions: [
@@ -91,6 +95,7 @@ const StoryChapters = [
             },
             {
                 id: 3,
+                image: '', // assets/images/escena1_3.png
                 description: 'Has aprendido varias señas básicas. La persona te explica que las personas sordas forman una comunidad con su propia cultura. ¿Qué haces ahora?',
                 help: 'La comunidad sorda tiene su propia cultura, historia y tradiciones. Es importante respetar y valorar esta diversidad.',
                 decisions: [
@@ -112,6 +117,7 @@ const StoryChapters = [
             },
             {
                 id: 4,
+                image: '', // assets/images/escena1_4.png
                 description: 'Has completado el primer capítulo. Has aprendido que la comunicación inclusiva es fundamental. ¡Felicidades!',
                 help: 'Has dado el primer paso hacia una comunicación más inclusiva. Continúa aprendiendo y practicando.',
                 decisions: []
@@ -124,6 +130,7 @@ const StoryChapters = [
         scenes: [
             {
                 id: 1,
+                image: '', // assets/images/escena2_1.png
                 description: 'Estás en el parque y ves a un grupo de personas sordas conversando en lengua de señas. Te das cuenta de que se comunican de manera muy expresiva. ¿Qué haces?',
                 help: 'Las personas sordas usan expresiones faciales y movimientos corporales como parte de su comunicación. Esto es natural y necesario en la lengua de señas.',
                 decisions: [
@@ -152,6 +159,7 @@ const StoryChapters = [
             },
             {
                 id: 2,
+                image: '', // assets/images/escena2_2.png
                 description: 'Una persona del grupo te explica que las expresiones faciales son parte esencial de la lengua de señas, no solo decoración. ¿Cómo reaccionas?',
                 help: 'En la lengua de señas, las expresiones faciales transmiten información gramatical y emocional. Son tan importantes como las palabras en el lenguaje hablado.',
                 decisions: [
@@ -173,6 +181,7 @@ const StoryChapters = [
             },
             {
                 id: 3,
+                image: '', // assets/images/escena2_3.png
                 description: 'Has aprendido sobre la importancia de las expresiones faciales. El grupo te invita a un evento de la comunidad sorda. ¿Aceptas?',
                 help: 'Participar en eventos de la comunidad sorda es una excelente manera de aprender, practicar y conocer más sobre la cultura sorda.',
                 decisions: [
@@ -194,6 +203,7 @@ const StoryChapters = [
             },
             {
                 id: 4,
+                image: '', // assets/images/escena2_4.png
                 description: 'Has completado el segundo capítulo. Has aprendido sobre la importancia de las expresiones faciales y la comunidad sorda. ¡Bien hecho!',
                 help: 'Cada capítulo te acerca más a una comunicación verdaderamente inclusiva. Sigue aprendiendo.',
                 decisions: []
@@ -206,6 +216,7 @@ const StoryChapters = [
         scenes: [
             {
                 id: 1,
+                image: '', // assets/images/escena3_1.png
                 description: 'En tu trabajo, un nuevo compañero es sordo. Tu jefe te pide que le ayudes a integrarse. ¿Cómo te preparas?',
                 help: 'La inclusión en el trabajo es fundamental. Prepararte con antelación muestra profesionalismo y empatía.',
                 decisions: [
@@ -227,6 +238,7 @@ const StoryChapters = [
             },
             {
                 id: 2,
+                image: '', // assets/images/escena3_2.png
                 description: 'Tu compañero sordo llega. Te das cuenta de que las reuniones no son accesibles para él. ¿Qué haces?',
                 help: 'La accesibilidad es un derecho. Las personas sordas necesitan intérpretes o subtítulos en tiempo real para participar plenamente en reuniones.',
                 decisions: [
@@ -255,6 +267,7 @@ const StoryChapters = [
             },
             {
                 id: 3,
+                image: '', // assets/images/escena3_3.png
                 description: 'Con el intérprete, tu compañero puede participar plenamente. Te das cuenta de que la inclusión beneficia a todos. ¿Qué aprendes?',
                 help: 'La inclusión no es solo lo correcto, también mejora el ambiente de trabajo y la productividad de todos.',
                 decisions: [
@@ -276,6 +289,7 @@ const StoryChapters = [
             },
             {
                 id: 4,
+                image: '', // assets/images/escena3_4.png
                 description: 'Has completado el tercer capítulo. Has aprendido sobre inclusión laboral y accesibilidad. ¡Felicidades por ser un aliado de la inclusión!',
                 help: 'La inclusión es un proceso continuo. Sigue aprendiendo y abogando por la accesibilidad en todos los espacios.',
                 decisions: []
@@ -288,6 +302,7 @@ const StoryChapters = [
         scenes: [
             {
                 id: 1,
+                image: '', // assets/images/escena4_1.png
                 description: 'Conoces a una familia donde los padres son sordos y los hijos oyentes. Te invitan a cenar. ¿Cómo te preparas?',
                 help: 'Muchas familias tienen miembros sordos y oyentes. La comunicación inclusiva fortalece los lazos familiares.',
                 decisions: [
@@ -309,6 +324,7 @@ const StoryChapters = [
             },
             {
                 id: 2,
+                image: '', // assets/images/escena4_2.png
                 description: 'En la cena, te das cuenta de que la familia se comunica principalmente en señas. Los hijos son bilingües (señas y español). ¿Qué haces?',
                 help: 'Los hijos de padres sordos a menudo crecen siendo bilingües. Esto es natural y enriquecedor para su desarrollo.',
                 decisions: [
@@ -330,6 +346,7 @@ const StoryChapters = [
             },
             {
                 id: 3,
+                image: '', // assets/images/escena4_3.png
                 description: 'Has aprendido que las familias sordas tienen dinámicas únicas y valiosas. ¿Qué valoras más de esta experiencia?',
                 help: 'Cada familia tiene su propia forma de comunicarse. Las familias sordas muestran que hay muchas formas válidas de conexión.',
                 decisions: [
@@ -351,6 +368,7 @@ const StoryChapters = [
             },
             {
                 id: 4,
+                image: '', // assets/images/escena4_4.png
                 description: 'Has completado el cuarto capítulo. Has aprendido sobre las familias sordas y la importancia de la comunicación inclusiva en todos los contextos. ¡Excelente trabajo!',
                 help: 'La inclusión comienza en casa y se extiende a todos los aspectos de la vida. Sigue aprendiendo y practicando.',
                 decisions: []
@@ -542,6 +560,38 @@ function loadStoryScene(chapterIndex, sceneIndex) {
             scenarioDescription.style.visibility = 'visible';
         } else {
             scenarioDescription.style.visibility = 'hidden';
+        }
+    }
+
+    // Cargar imagen de la escena si existe
+    const sceneImg = document.getElementById('scene-img');
+    const imageFrame = document.getElementById('image-frame');
+    const placeholder = document.getElementById('illustration-placeholder');
+
+    if (scene.image && scene.image.trim() !== '') {
+        // Hay imagen para esta escena
+        if (sceneImg) {
+            sceneImg.src = scene.image;
+            sceneImg.alt = `Ilustración: ${scene.description.substring(0, 50)}...`;
+            sceneImg.style.display = 'block';
+        }
+        if (imageFrame) {
+            imageFrame.classList.add('has-image');
+        }
+        if (placeholder) {
+            placeholder.style.display = 'none';
+        }
+    } else {
+        // No hay imagen, mostrar placeholder
+        if (sceneImg) {
+            sceneImg.src = '';
+            sceneImg.style.display = 'none';
+        }
+        if (imageFrame) {
+            imageFrame.classList.remove('has-image');
+        }
+        if (placeholder) {
+            placeholder.style.display = 'flex';
         }
     }
 
