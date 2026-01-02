@@ -1609,14 +1609,16 @@ function updateGlobalProgress() {
     const progressPercentage = document.getElementById('progress-percentage');
 
     if (globalProgress && progressPercentage) {
-        const totalProgress = (GameState.progress.lessonsCompleted / GameState.progress.totalLessons) * 100;
+        // Calcular porcentaje basado en capítulos completados (4 capítulos = 100%)
+        const totalChapters = GameState.progress.totalChapters || 4;
+        const completed = GameState.progress.chaptersCompleted || 0;
+        const totalProgress = (completed / totalChapters) * 100;
         // Clamp to 0-100 to avoid confusing numbers like 120%
-        const validProgress = Math.min(Math.max(0, Math.round(totalProgress || 0)), 100);
+        const validProgress = Math.min(Math.max(0, Math.round(totalProgress)), 100);
         progressPercentage.textContent = `${validProgress}%`;
 
-        if (totalProgress > 0) {
-            globalProgress.style.display = 'block';
-        }
+        // Siempre mostrar el indicador de progreso
+        globalProgress.style.display = 'block';
     }
 }
 

@@ -904,6 +904,20 @@
         const helpTooltip = document.getElementById('help-tooltip');
         const tooltipContent = document.getElementById('tooltip-content');
 
+        // Obtener configuración de subtítulos desde localStorage
+        function getSubtitlesSetting() {
+            try {
+                const saved = localStorage.getItem('senasconecta-settings');
+                if (saved) {
+                    const settings = JSON.parse(saved);
+                    return settings.showSubtitles !== false; // Por defecto true
+                }
+            } catch (e) {
+                console.error('Error leyendo configuración:', e);
+            }
+            return true; // Por defecto mostrar subtítulos
+        }
+
         // Inicializar
         function init() {
             loadLesson(currentLesson);
@@ -919,7 +933,15 @@
             signVideo.load();
             signVideo.play();
 
-            signDescription.textContent = `Seña: ${lesson.sign}`;
+            // Aplicar configuración de subtítulos
+            const showSubtitles = getSubtitlesSetting();
+            if (showSubtitles) {
+                signDescription.textContent = `Seña: ${lesson.sign}`;
+                signDescription.style.display = 'block';
+            } else {
+                signDescription.textContent = '';
+                signDescription.style.display = 'none';
+            }
             tooltipContent.textContent = lesson.help;
 
             // Limpiar opciones anteriores
