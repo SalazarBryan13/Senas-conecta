@@ -411,6 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (chapterParam !== null) {
         GameState.currentChapter = parseInt(chapterParam) || 0;
+        GameState.currentScene = 0; // Siempre empezar desde la escena 0 del capítulo
     }
 
     // Configurar event listeners

@@ -1060,8 +1060,26 @@ function startStoryMode() {
 }
 
 function continueFromLastPosition() {
-    // Redirigir a la página de historias
-    window.location.href = 'historias.html';
+    // Calcular a qué capítulo dirigir basándose en el progreso
+    // Si hay capítulos completados, ir al siguiente capítulo no completado
+    const chaptersCompleted = GameState.progress.chaptersCompleted || 0;
+    const totalChapters = StoryChapters.length;
+
+    let targetChapter = 0;
+
+    if (chaptersCompleted > 0 && chaptersCompleted < totalChapters) {
+        // Hay capítulos completados, ir al siguiente capítulo no completado
+        targetChapter = chaptersCompleted;
+    } else if (chaptersCompleted >= totalChapters) {
+        // Todos los capítulos completados, ir al último (o mostrar mapa)
+        targetChapter = totalChapters - 1;
+    } else if (GameState.progress.lastChapter > 0 || GameState.progress.lastScene > 0) {
+        // Hay progreso guardado en algún capítulo
+        targetChapter = GameState.progress.lastChapter;
+    }
+
+    // Redirigir a la página de historias con el capítulo calculado
+    window.location.href = `historias.html?chapter=${targetChapter}`;
 }
 
 function checkSavedProgress() {
