@@ -992,7 +992,7 @@ function updateProgressMap() {
         } else {
             // TODOS LOS CAPÍTULOS DISPONIBLES (no bloqueados)
             statusText = 'Disponible';
-            badgeIcon = '�';
+            badgeIcon = '🔓';
             chapterProgress = 0;
             chapter.classList.add('available');
             chapter.classList.remove('completed', 'in-progress', 'locked');
