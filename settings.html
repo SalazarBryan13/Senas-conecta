@@ -253,41 +253,54 @@
 </head>
 
 <body>
-    <div class="game-panel" id="main-content">
-        <!-- Header -->
-        <h1 class="game-title">CONFIGURACIÓN</h1>
-        <p class="game-subtitle">Ajustes del Juego</p>
+    <!-- Skip link for screen reader accessibility -->
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; top: -100px; left: 0; background: #F39C12; color: #fff; padding: 1rem; z-index: 10000; transition: top 0.3s;">Saltar
+        al contenido principal</a>
+    <style>
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
 
-        <!-- Formulario -->
-        <div class="settings-content">
+    <main role="main">
+        <div class="game-panel" id="main-content">
+            <!-- Header -->
+            <h1 class="game-title">CONFIGURACIÓN</h1>
+            <p class="game-subtitle">Ajustes del Juego</p>
+
+            <!-- Formulario -->
+            <div class="settings-content">
 
 
 
-            <!-- Grupo Audio / Feedback -->
-            <div class="setting-row">
-                <span class="setting-label">Subtítulos</span>
-                <label class="game-switch">
-                    <input type="checkbox" id="subtitles-toggle" checked>
-                    <span class="game-slider-round"></span>
-                </label>
+                <!-- Grupo Audio / Feedback -->
+                <div class="setting-row">
+                    <span class="setting-label">Subtítulos</span>
+                    <label class="game-switch">
+                        <input type="checkbox" id="subtitles-toggle" checked
+                            aria-label="Activar o desactivar subtítulos">
+                        <span class="game-slider-round"></span>
+                    </label>
+                </div>
+
+                <!-- Botones -->
+                <button class="game-btn primary" id="save-settings-btn"
+                    aria-label="Guardar configuración y volver al inicio">
+                    <span class="btn-icon" aria-hidden="true">💾</span> GUARDAR Y SALIR
+                </button>
+
+                <div class="back-btn-container">
+                    <a href="index.html" style="text-decoration: none;">
+                        <button class="game-btn" aria-label="Volver al inicio sin guardar">
+                            <span class="btn-icon" aria-hidden="true">↩</span> SOLO SALIR
+                        </button>
+                    </a>
+                </div>
+
             </div>
-
-            <!-- Botones -->
-            <button class="game-btn primary" id="save-settings-btn" aria-label="Guardar configuración y volver al inicio">
-                <span class="btn-icon" aria-hidden="true">💾</span> GUARDAR Y SALIR
-            </button>
-
-            <div class="back-btn-container">
-                <a href="index.html" style="text-decoration: none;">
-                    <button class="game-btn" aria-label="Volver al inicio sin guardar">
-                        <span class="btn-icon" aria-hidden="true">↩</span> SOLO SALIR
-                    </button>
-                </a>
-            </div>
-
         </div>
-    </div>
-
+    </main>
     <!-- Script de Lógica Local -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {

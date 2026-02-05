@@ -38,6 +38,7 @@ const StoryChapters = [
             {
                 id: 1,
                 image: 'assets/images/1.1.png',
+                altText: 'Niño sonriente en un parque soleado saludando con señas a otros niños. El parque tiene árboles verdes y juegos coloridos de fondo. El niño mueve sus manos de forma expresiva.',
                 description: 'Llegas a un parque nuevo y ves a un niño saludando a otros moviendo sus manos de forma divertida pero sin decir nada. ¿Qué piensas?',
                 help: 'A veces las personas usan sus manos para hablar. Se llama Lengua de Señas.',
                 decisions: [
@@ -67,6 +68,7 @@ const StoryChapters = [
             {
                 id: 2,
                 image: 'assets/images/1.2.png',
+                altText: 'Niño haciendo la seña del pulgar arriba con una sonrisa amigable. Su mano está levantada mostrando el gesto universal de aprobación. Expresión de bienvenida y amistad.',
                 description: 'El niño hace una seña con su mano cerrada y el pulgar hacia arriba. Parece que te está saludando. ¿Cómo respondes?',
                 help: 'Muchas señas son gestos que ya conocemos, como el pulgar arriba para decir "bien" o "hola".',
                 decisions: [
@@ -103,6 +105,7 @@ const StoryChapters = [
             {
                 id: 3,
                 image: 'assets/images/1.3.png',
+                altText: 'Niño señalando sus oídos y haciendo un gesto de negación con la cabeza. Expresión tranquila mientras explica que es sordo. Otro niño observa con curiosidad y atención.',
                 description: 'Él señala sus oídos y luego hace una seña de "no". Te das cuenta de que no puede oírte. ¿Qué haces ahora?',
                 help: 'Si alguien no oye, puedes usar tus manos, gestos o dibujos para que te entienda.',
                 decisions: [
@@ -139,6 +142,7 @@ const StoryChapters = [
             {
                 id: 4,
                 image: 'assets/images/1.4.png',
+                altText: 'Dos niños frente a frente haciendo la seña de amigo juntos. Expresiones felices mientras aprenden a comunicarse. Parque colorido con sol brillante al fondo.',
                 description: '¡Has descubierto que las manos pueden hablar! Tu nuevo amigo te enseña la seña de "amigo". ¿Qué quieres hacer?',
                 help: 'La amistad no necesita palabras, solo ganas de entenderse.',
                 decisions: [
@@ -168,6 +172,7 @@ const StoryChapters = [
             {
                 id: 5,
                 image: 'assets/images/1.4.png',
+                altText: 'Los dos niños celebrando su nueva amistad en el parque. Ambos sonríen y hacen señas juntos. Ambiente alegre y colorido que representa la conexión entre ellos.',
                 description: '🎉 ¡Felicidades! Has completado el Capítulo 1. Moraleja: La amistad no necesita palabras, solo ganas de entenderse.',
                 help: '¡Has dado el primer paso hacia la inclusión!',
                 decisions: []
@@ -181,6 +186,7 @@ const StoryChapters = [
             {
                 id: 1,
                 image: 'assets/images/2.1.png',
+                altText: 'Escuela con pasillos coloridos. Niña sorda deja caer su estuche en el suelo. Otra niña intenta llamar su atención pero ella no voltea porque no puede escuchar.',
                 description: 'En la escuela, una niña sorda deja caer su estuche. Intentas llamarla por su nombre pero no voltea. ¿Cómo captas su atención?',
                 help: 'Para llamar a alguien que no oye, puedes tocar suavemente su hombro o mover tu mano en su campo visual.',
                 decisions: [
@@ -217,6 +223,7 @@ const StoryChapters = [
             {
                 id: 2,
                 image: 'assets/images/2.2.png',
+                altText: 'Niña sorda mirando atentamente los labios de quien le habla. Expresión concentrada mientras lee los labios. Ambiente escolar con luz natural.',
                 description: 'Ella voltea y te mira a la cara. Te das cuenta de que mira mucho tus labios. ¿Cómo debes hablarle?',
                 help: 'Muchas personas sordas leen los labios. Habla claro, sin taparte la boca y de frente.',
                 decisions: [
@@ -253,6 +260,7 @@ const StoryChapters = [
             {
                 id: 3,
                 image: 'assets/images/2.3.png',
+                altText: 'Niña sorda haciendo la seña de gracias tocando su barbilla y moviendo la mano hacia adelante. Sonríe agradecida. El estuche está en su mano.',
                 description: 'Le devuelves su estuche y ella hace un gesto tocando su barbilla y moviendo la mano hacia adelante. ¡Es la seña de "Gracias"! ¿Qué haces?',
                 help: 'Aprender señas básicas como "gracias" hace que el mundo sea más inclusivo.',
                 decisions: [
@@ -289,6 +297,7 @@ const StoryChapters = [
             {
                 id: 4,
                 image: 'assets/images/2.4.png',
+                altText: 'Grupo de niños sentados juntos en el patio de la escuela. La niña sorda invita a sentarse a su lado. Expresiones amigables de todos los niños.',
                 description: 'Has aprendido a comunicarte de una forma nueva. Ella te invita a sentarte con sus amigos. ¿Qué decides?',
                 help: 'Los ojos son los oídos de quienes no pueden escuchar.',
                 decisions: [
@@ -318,6 +327,7 @@ const StoryChapters = [
             {
                 id: 5,
                 image: 'assets/images/2.4.png',
+                altText: 'Grupo feliz de niños incluyendo a la niña sorda, todos juntos sonriendo en el patio escolar. Ambiente de amistad y unión que celebra la comunicación.',
                 description: '🎉 ¡Felicidades! Has completado el Capítulo 2. Moraleja: Los ojos son los oídos de quienes no pueden escuchar.',
                 help: '¡El silencio tiene tesoros maravillosos!',
                 decisions: []
@@ -331,6 +341,7 @@ const StoryChapters = [
             {
                 id: 1,
                 image: 'assets/images/3.1.png',
+                altText: 'Salón de fiestas con luces de colores y música. Niño sordo coloca sus manos sobre una mesa de madera y sonríe sintiendo las vibraciones del ritmo.',
                 description: 'Hay una fiesta en el salón con música muy fuerte. Notas que tu amigo sordo pone sus manos sobre una mesa de madera y sonríe. ¿Por qué crees que lo hace?',
                 help: 'El sonido es vibración. Las personas sordas pueden "sentir" la música a través de las vibraciones en objetos.',
                 decisions: [
@@ -367,6 +378,7 @@ const StoryChapters = [
             {
                 id: 2,
                 image: 'assets/images/3.2.png',
+                altText: 'Dos niños bailando juntos en la fiesta. Uno muestra los pasos de baile al otro. Luces de colores y globos decoran el ambiente festivo.',
                 description: 'Quieres bailar con él, pero te preocupa que no sepa los pasos porque no "oye" la letra. ¿Cómo lo invitas?',
                 help: 'Bailar es movimiento y sentimiento. No hace falta oír la letra para disfrutar el ritmo juntos.',
                 decisions: [
@@ -403,6 +415,7 @@ const StoryChapters = [
             {
                 id: 3,
                 image: 'assets/images/3.3.png',
+                altText: 'Niños bailando con globos de colores en sus manos. El niño sordo siente las vibraciones de la música a través del globo. Expresiones de alegría en todos.',
                 description: 'Durante el baile, usan globos para sentir mejor las vibraciones. Tu amigo está muy emocionado. ¿Qué aprendes de esto?',
                 help: 'Existen muchas formas creativas de incluir a todos en las actividades, solo hay que usar la imaginación.',
                 decisions: [
@@ -439,6 +452,7 @@ const StoryChapters = [
             {
                 id: 4,
                 image: 'assets/images/3.4.png',
+                altText: 'Niño sordo haciendo la seña de música con sus manos mientras sonríe. La fiesta termina con todos los niños felices y conectados.',
                 description: 'La fiesta termina y todos están felices. Tu amigo te enseña la seña de "música". ¿Cómo te sientes?',
                 help: 'La música se siente en el corazón y en la piel.',
                 decisions: [
@@ -468,6 +482,7 @@ const StoryChapters = [
             {
                 id: 5,
                 image: 'assets/images/3.4.png',
+                altText: 'Grupo de niños celebrando al final de la fiesta. Globos y luces de fondo. Todos felices compartiendo un momento especial de conexión e inclusión.',
                 description: '🎉 ¡Felicidades! Has completado el Capítulo 3. Moraleja: No hay barreras cuando el corazón quiere compartir la alegría.',
                 help: '¡La música conecta corazones!',
                 decisions: []
@@ -481,6 +496,7 @@ const StoryChapters = [
             {
                 id: 1,
                 image: 'assets/images/4.1.png',
+                altText: 'Grupo de niños en el patio de la escuela. Una niña sorda está sola mientras otros niños no quieren jugar con ella. Expresión de preocupación en el observador.',
                 description: 'Ves a un grupo de niños que no quieren jugar con una niña sorda porque dicen que es "difícil" entenderse. ¿Qué haces?',
                 help: 'Ser un aliado significa ayudar a otros a entender que la comunicación es posible para todos.',
                 decisions: [
@@ -517,6 +533,7 @@ const StoryChapters = [
             {
                 id: 2,
                 image: 'assets/images/4.2.png',
+                altText: 'Niños aprendiendo el abecedario de señas juntos en el salón de clases. Un cartel con las letras en lengua de señas está visible. Expresiones de interés y curiosidad.',
                 description: '¡Ahora todos están aprendiendo señas! Quieren poner un cartel en el salón con el abecedario de señas. ¿Dónde lo pondrías?',
                 help: 'La visibilidad ayuda a recordar lo aprendido y a que nuevos niños también se interesen.',
                 decisions: [
@@ -553,6 +570,7 @@ const StoryChapters = [
             {
                 id: 3,
                 image: 'assets/images/4.3.png',
+                altText: 'Presentación en el salón de clases con niños hablando en voz y señas al mismo tiempo. Público de niños y maestros aplaudiendo. Ambiente de celebración educativa.',
                 description: 'Al final del curso, todos hacen una presentación en señas y voz al mismo tiempo. Sientes mucha satisfacción. ¿Cuál es el mayor logro?',
                 help: 'Lograr que todos se comuniquen y se respeten es la base de una sociedad mejor.',
                 decisions: [
@@ -589,6 +607,7 @@ const StoryChapters = [
             {
                 id: 4,
                 image: 'assets/images/4.4.png',
+                altText: 'Niño haciendo una promesa con la mano en el corazón. A su alrededor, amigos sordos y oyentes unidos. Expresión de compromiso y esperanza.',
                 description: '¡Eres un experto en conectar mundos! ¿Qué promesa te haces para el futuro?',
                 help: 'La Lengua de Señas no solo mueve manos, mueve corazones hacia la inclusión.',
                 decisions: [
@@ -625,6 +644,7 @@ const StoryChapters = [
             {
                 id: 5,
                 image: 'assets/images/4.4.png',
+                altText: 'Gran celebración final con todos los personajes juntos. Niños sordos y oyentes haciendo señas de alegría. Confeti y globos en el ambiente festivo de logro.',
                 description: '🎉 ¡Felicidades! Has completado toda la aventura. Moraleja: La Lengua de Señas no solo mueve manos, mueve corazones hacia la inclusión. ¡Eres increíble!',
                 help: '¡Has terminado toda la aventura!',
                 decisions: []
@@ -829,7 +849,8 @@ function loadStoryScene(chapterIndex, sceneIndex) {
         // Hay imagen para esta escena
         if (sceneImg) {
             sceneImg.src = scene.image;
-            sceneImg.alt = `Ilustración: ${scene.description.substring(0, 50)}...`;
+            // Usar altText descriptivo si existe, sino usar descripción truncada
+            sceneImg.alt = scene.altText || `Ilustración: ${scene.description.substring(0, 100)}...`;
             sceneImg.style.display = 'block';
         }
         if (imageFrame) {

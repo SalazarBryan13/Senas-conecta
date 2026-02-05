@@ -1156,6 +1156,9 @@
 </head>
 
 <body>
+    <!-- Skip link for screen reader accessibility -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Indicador de ayuda para teclado -->
     <div class="keyboard-hint" id="keyboard-hint" aria-live="polite" aria-atomic="true">
         <span>Navegación: </span>
@@ -1294,11 +1297,14 @@
 
                 <!-- Botones de acción -->
                 <div class="action-buttons">
-                    <button class="btn btn-primary" id="next-level-btn" aria-label="Continuar al siguiente capítulo">Siguiente capítulo</button>
-                    <button class="btn btn-secondary" id="view-progress-map-btn" aria-label="Ver mapa de progreso y capítulos disponibles">Ver mapa de avance</button>
+                    <button class="btn btn-primary" id="next-level-btn"
+                        aria-label="Continuar al siguiente capítulo">Siguiente capítulo</button>
+                    <button class="btn btn-secondary" id="view-progress-map-btn"
+                        aria-label="Ver mapa de progreso y capítulos disponibles">Ver mapa de avance</button>
                 </div>
 
-                <button class="text-link" id="retry-lesson-btn" aria-label="Reintentar esta lección">Reintentar lección</button>
+                <button class="text-link" id="retry-lesson-btn" aria-label="Reintentar esta lección">Reintentar
+                    lección</button>
             </div>
         </div>
 
@@ -1316,7 +1322,8 @@
                 <nav class="game-path" role="navigation" aria-label="Navegación de capítulos">
 
                     <!-- Capítulo 1 - Completado -->
-                    <div class="path-node completed" data-chapter="0" role="button" tabindex="0" aria-label="Capítulo 1: Encuentro en la Escuela - Completado">
+                    <div class="path-node completed" data-chapter="0" role="button" tabindex="0"
+                        aria-label="Capítulo 1: Encuentro en la Escuela - Completado">
                         <div class="node-connector top-connector"></div>
                         <div class="node-circle">
                             <span class="node-number">1</span>
@@ -1338,7 +1345,8 @@
                     </div>
 
                     <!-- Capítulo 2 - En progreso -->
-                    <div class="path-node in-progress current" data-chapter="1" role="button" tabindex="0" aria-label="Capítulo 2: Encuentro en el Parque - En progreso">
+                    <div class="path-node in-progress current" data-chapter="1" role="button" tabindex="0"
+                        aria-label="Capítulo 2: Encuentro en el Parque - En progreso">
                         <div class="node-connector top-connector"></div>
                         <div class="node-circle pulsing">
                             <span class="node-number">2</span>
@@ -1359,7 +1367,8 @@
                     </div>
 
                     <!-- Capítulo 3 - Disponible -->
-                    <div class="path-node available" data-chapter="2" role="button" tabindex="0" aria-label="Capítulo 3: Inclusión en el Trabajo - Disponible">
+                    <div class="path-node available" data-chapter="2" role="button" tabindex="0"
+                        aria-label="Capítulo 3: Inclusión en el Trabajo - Disponible">
                         <div class="node-connector top-connector inactive"></div>
                         <div class="node-circle">
                             <span class="node-number">3</span>
@@ -1380,7 +1389,8 @@
                     </div>
 
                     <!-- Capítulo 4 - Disponible -->
-                    <div class="path-node available" data-chapter="3" role="button" tabindex="0" aria-label="Capítulo 4: Familia y Amistad - Disponible">
+                    <div class="path-node available" data-chapter="3" role="button" tabindex="0"
+                        aria-label="Capítulo 4: Familia y Amistad - Disponible">
                         <div class="node-connector top-connector inactive"></div>
                         <div class="node-circle">
                             <span class="node-number">4</span>
@@ -1398,33 +1408,34 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Panel de estadísticas mejorado -->
-                <div class="stats-panel" role="group" aria-label="Estadísticas">
-                    <div class="stat-item">
-                        <div class="stat-icon">📚</div>
-                        <div class="stat-value">1<span class="stat-total">/4</span></div>
-                        <div class="stat-name">Capítulos</div>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-icon">🤟</div>
-                        <div class="stat-value">12</div>
-                        <div class="stat-name">Señas</div>
-                    </div>
-
-                </div>
-
-                <!-- Botones de acción -->
-                <div class="map-actions">
-                    <button class="btn btn-primary play-btn" id="continue-adventure-btn" aria-label="Continuar la aventura desde el último punto guardado">
-                        <span class="btn-icon" aria-hidden="true">▶️</span>
-                        Continuar aventura
-                    </button>
-                    <a href="index.html" class="back-link" id="back-from-map-btn">← Volver al inicio</a>
-                </div>
             </div>
+
+            <!-- Panel de estadísticas mejorado -->
+            <div class="stats-panel" role="group" aria-label="Estadísticas">
+                <div class="stat-item">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value">1<span class="stat-total">/4</span></div>
+                    <div class="stat-name">Capítulos</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-icon">🤟</div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-name">Señas</div>
+                </div>
+
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="map-actions">
+                <button class="btn btn-primary play-btn" id="continue-adventure-btn"
+                    aria-label="Continuar la aventura desde el último punto guardado">
+                    <span class="btn-icon" aria-hidden="true">▶️</span>
+                    Continuar aventura
+                </button>
+                <a href="index.html" class="back-link" id="back-from-map-btn">← Volver al inicio</a>
+            </div>
+        </div>
         </div>
 
         <!-- Tooltip de ayuda -->

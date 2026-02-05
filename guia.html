@@ -275,6 +275,16 @@
 </head>
 
 <body>
+    <!-- Skip link for screen reader accessibility -->
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; top: -100px; left: 0; background: #F39C12; color: #fff; padding: 1rem; z-index: 10000; transition: top 0.3s;">Saltar
+        al contenido principal</a>
+    <style>
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+
     <main id="main-content">
         <div class="container">
             <h1 class="screen-title">

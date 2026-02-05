@@ -363,7 +363,7 @@
             color: white;
             position: relative;
         }
-        
+
         .answer-option.correct::after {
             content: '✓';
             position: absolute;
@@ -379,7 +379,7 @@
             color: white;
             position: relative;
         }
-        
+
         .answer-option.incorrect::after {
             content: '✗';
             position: absolute;
@@ -573,6 +573,16 @@
 </head>
 
 <body>
+    <!-- Skip link for screen reader accessibility -->
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; top: -100px; left: 0; background: #F39C12; color: #fff; padding: 1rem; z-index: 10000; transition: top 0.3s;">Saltar
+        al contenido principal</a>
+    <style>
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+
     <main id="main-content">
         <!-- Pantalla de Lección -->
         <div id="lesson-screen" class="screen active">
@@ -607,13 +617,16 @@
 
                 <!-- Opciones de respuesta -->
                 <div class="answer-options" id="answer-options" role="radiogroup" aria-label="Opciones de respuesta">
-                    <button class="answer-option" role="radio" aria-checked="false" data-answer="hola" aria-label="Seleccionar opción: Hola">
+                    <button class="answer-option" role="radio" aria-checked="false" data-answer="hola"
+                        aria-label="Seleccionar opción: Hola">
                         👋 Hola
                     </button>
-                    <button class="answer-option" role="radio" aria-checked="false" data-answer="gracias" aria-label="Seleccionar opción: Gracias">
+                    <button class="answer-option" role="radio" aria-checked="false" data-answer="gracias"
+                        aria-label="Seleccionar opción: Gracias">
                         🙏 Gracias
                     </button>
-                    <button class="answer-option" role="radio" aria-checked="false" data-answer="adios" aria-label="Seleccionar opción: Adiós">
+                    <button class="answer-option" role="radio" aria-checked="false" data-answer="adios"
+                        aria-label="Seleccionar opción: Adiós">
                         👋 Adiós
                     </button>
                 </div>
