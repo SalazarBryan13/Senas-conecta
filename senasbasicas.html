@@ -955,6 +955,7 @@
                 const btn = document.createElement('button');
                 btn.className = 'answer-option';
                 btn.setAttribute('data-answer', option.value);
+                btn.setAttribute('aria-label', `Seleccionar opción: ${option.text}`);
                 btn.textContent = option.text;
                 btn.addEventListener('click', () => handleAnswer(btn, option.value));
                 answerOptions.appendChild(btn);
