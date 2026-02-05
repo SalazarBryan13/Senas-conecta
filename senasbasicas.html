@@ -16,7 +16,7 @@
         /* Importar fuente */
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap');
 
-        /* Paleta Amanecer */
+        /* Paleta Amanecer - Optimizada para accesibilidad y daltonismo */
         :root {
             --sunrise-orange-deep: #D35400;
             --sunrise-orange: #E67E22;
@@ -31,6 +31,13 @@
             --sunrise-text: #5D4E37;
             --sunrise-success: #58D68D;
             --sunrise-error: #E74C3C;
+            /* Colores de texto con mejor contraste para WCAG 2.2 AA */
+            --sunrise-text-dark: #2C1F15;
+            --sunrise-orange-dark: #8B3500;
+            --sunrise-orange-text: #A04000;
+            /* Colores optimizados para daltonismo - mejor diferenciación por luminosidad */
+            --sunrise-orange-accessible: #C0392B;
+            --sunrise-yellow-accessible: #F7DC6F;
         }
 
         /* Reset */
@@ -131,10 +138,10 @@
             font-family: 'Fredoka One', 'Nunito', sans-serif;
             font-size: 1.5rem;
             font-weight: 400;
-            color: var(--sunrise-orange-deep);
+            color: var(--sunrise-orange-dark);
             text-align: center;
             margin-bottom: 1.25rem;
-            text-shadow: 0 2px 4px rgba(211, 84, 0, 0.15);
+            text-shadow: 0 2px 4px rgba(139, 53, 0, 0.2);
         }
 
         /* Barra de progreso */
@@ -156,10 +163,11 @@
             box-shadow: 0 2px 8px rgba(243, 156, 18, 0.5);
             width: 20%;
             transition: width 0.5s ease;
+            border: 2px solid var(--sunrise-orange-dark);
         }
 
         .lesson-progress .progress-text {
-            color: var(--sunrise-orange-deep);
+            color: var(--sunrise-orange-dark);
             font-weight: 700;
             font-size: 0.8rem;
             display: block;
@@ -206,7 +214,7 @@
         }
 
         .sign-description {
-            color: var(--sunrise-orange);
+            color: var(--sunrise-orange-text);
             font-weight: 600;
             font-size: 1.1rem;
             margin-top: 0.5rem;
@@ -248,7 +256,7 @@
 
         .instruction-text {
             flex: 1;
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             font-weight: 600;
             margin: 0;
         }
@@ -335,11 +343,12 @@
             background: linear-gradient(135deg, var(--sunrise-cream) 0%, #FFFBF0 100%);
             border: 2px solid var(--sunrise-yellow-light);
             border-radius: 14px;
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             font-family: 'Nunito', sans-serif;
             font-weight: 600;
             font-size: 1rem;
             padding: 1rem 1.25rem;
+            padding-right: 3rem;
             text-align: left;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -385,13 +394,33 @@
         .answer-option.correct {
             background: linear-gradient(135deg, var(--sunrise-success) 0%, #48BB78 100%);
             border-color: #27AE60;
+            border-width: 3px;
             color: white;
+            position: relative;
+        }
+        
+        .answer-option.correct::after {
+            content: '✓';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .answer-option.incorrect {
             background: linear-gradient(135deg, var(--sunrise-error) 0%, #C0392B 100%);
             border-color: #C0392B;
+            border-width: 3px;
             color: white;
+            position: relative;
+        }
+        
+        .answer-option.incorrect::after {
+            content: '✗';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .answer-option:disabled {
@@ -475,7 +504,7 @@
             background: transparent;
             border: 2px solid var(--sunrise-orange);
             border-radius: 12px;
-            color: var(--sunrise-orange-deep);
+            color: var(--sunrise-orange-dark);
             font-family: 'Nunito', sans-serif;
             font-weight: 600;
             padding: 0.75rem 1.5rem;
@@ -508,7 +537,7 @@
         }
 
         .result-subtitle {
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             margin-bottom: 1.5rem;
         }
 
