@@ -842,6 +842,7 @@ function loadStoryScene(chapterIndex, sceneIndex) {
 
     // Cargar imagen de la escena si existe
     const sceneImg = document.getElementById('scene-img');
+    const sceneImgDesc = document.getElementById('scene-img-desc');
     const imageFrame = document.getElementById('image-frame');
     const placeholder = document.getElementById('illustration-placeholder');
 
@@ -850,7 +851,12 @@ function loadStoryScene(chapterIndex, sceneIndex) {
         if (sceneImg) {
             sceneImg.src = scene.image;
             // Usar altText descriptivo si existe, sino usar descripción truncada
-            sceneImg.alt = scene.altText || `Ilustración: ${scene.description.substring(0, 100)}...`;
+            const imageAlt = scene.altText || `Ilustración: ${scene.description.substring(0, 100)}...`;
+            sceneImg.alt = imageAlt;
+            sceneImg.setAttribute('aria-label', imageAlt);
+            if (sceneImgDesc) {
+                sceneImgDesc.textContent = imageAlt;
+            }
             sceneImg.style.display = 'block';
         }
         if (imageFrame) {
@@ -863,7 +869,12 @@ function loadStoryScene(chapterIndex, sceneIndex) {
         // No hay imagen, mostrar placeholder
         if (sceneImg) {
             sceneImg.src = '';
+            sceneImg.alt = '';
+            sceneImg.removeAttribute('aria-label');
             sceneImg.style.display = 'none';
+        }
+        if (sceneImgDesc) {
+            sceneImgDesc.textContent = 'No hay ilustración disponible para esta escena.';
         }
         if (imageFrame) {
             imageFrame.classList.remove('has-image');

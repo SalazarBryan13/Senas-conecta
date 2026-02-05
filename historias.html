@@ -1203,7 +1203,9 @@
                         <div class="image-frame" id="image-frame">
                             <!-- Imagen de la escena (se carga dinámicamente) -->
                             <img class="scene-img" id="scene-img" src="" alt="Ilustración de la escena"
-                                style="display: none;" tabindex="0">
+                                style="display: none;" tabindex="0" role="img" aria-describedby="scene-img-desc">
+                            <!-- Texto accesible vinculado al alt para lector de pantalla -->
+                            <p id="scene-img-desc" class="sr-only">Ilustración de la escena</p>
                             <!-- Placeholder elegante cuando no hay imagen -->
                             <div class="illustration-placeholder" id="illustration-placeholder" aria-hidden="true">
                                 <span class="placeholder-icon">🖼️</span>
