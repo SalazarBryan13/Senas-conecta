@@ -1851,7 +1851,7 @@ function getFocusableElements() {
 // Detectar si el usuario está usando el teclado
 function detectKeyboardUser() {
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab' || e.key === 'Enter' || e.key === 'Escape' || e.key === 'CapsLock') {
+        if (e.key === 'Tab' || e.key === 'Enter' || e.key === 'Escape') {
             KeyboardNavState.isUsingKeyboard = true;
             document.body.classList.add('keyboard-navigation');
             showKeyboardHint();
@@ -1899,42 +1899,18 @@ function setupKeyboardNavigation() {
         }
     });
 
-    // Navegación con Tab (siguiente) y CapsLock (anterior)
-    setupTabCapsLockNavigation();
+    // Navegación con Tab (siguiente) y Shift+Tab (anterior)
+    setupTabNavigation();
 
     // Manejar Enter en elementos enfocables
     setupEnterKeyHandler();
 }
 
-// Navegación con Tab y CapsLock
-function setupTabCapsLockNavigation() {
+// Navegación con Tab y Shift+Tab (comportamiento natural del navegador; solo anunciamos)
+function setupTabNavigation() {
     document.addEventListener('keydown', (e) => {
-        // CapsLock para retroceder
-        if (e.key === 'CapsLock') {
-            e.preventDefault();
-
-            const focusableElements = getFocusableElements();
-            if (focusableElements.length === 0) return;
-
-            const currentElement = document.activeElement;
-            let currentIndex = focusableElements.indexOf(currentElement);
-
-            // Si no hay elemento enfocado, empezar desde el final
-            if (currentIndex === -1) {
-                currentIndex = focusableElements.length;
-            }
-
-            // Ir al elemento anterior
-            const newIndex = (currentIndex - 1 + focusableElements.length) % focusableElements.length;
-            focusableElements[newIndex].focus();
-
-            // Anunciar para lectores de pantalla
-            announceCurrentElement(focusableElements[newIndex]);
-        }
-
-        // Tab para avanzar (comportamiento natural del navegador, solo anunciamos)
-        if (e.key === 'Tab' && !e.shiftKey) {
-            // Dejamos que Tab funcione normalmente, pero anunciamos después
+        // Tab / Shift+Tab (comportamiento natural del navegador, solo anunciamos después)
+        if (e.key === 'Tab') {
             setTimeout(() => {
                 if (document.activeElement) {
                     announceCurrentElement(document.activeElement);

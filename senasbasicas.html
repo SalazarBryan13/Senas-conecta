@@ -912,6 +912,51 @@
         const helpTooltip = document.getElementById('help-tooltip');
         const tooltipContent = document.getElementById('tooltip-content');
 
+        // Navegación de pantallas (interna) + Escape para volver
+        function isLessonScreenActive() {
+            return lessonScreen.classList.contains('active');
+        }
+
+        function isResultScreenActive() {
+            return resultScreen.classList.contains('active');
+        }
+
+        function showInternalScreen(screenName) {
+            if (screenName === 'lesson') {
+                lessonScreen.classList.add('active');
+                resultScreen.classList.remove('active');
+            } else if (screenName === 'result') {
+                lessonScreen.classList.remove('active');
+                resultScreen.classList.add('active');
+            }
+        }
+
+        function handleEscapeKey() {
+            // Si el video está en fullscreen, no interceptar (Escape sale de fullscreen)
+            if (document.fullscreenElement) return;
+
+            // Si el tooltip está abierto, cerrarlo primero
+            if (helpTooltip.classList.contains('active')) {
+                helpTooltip.classList.remove('active');
+                return;
+            }
+
+            // Si estamos en resultados, volver a la lección
+            if (isResultScreenActive()) {
+                showInternalScreen('lesson');
+                return;
+            }
+
+            // Si estamos en la lección, volver al inicio (preferir history.back si viene desde index)
+            if (isLessonScreenActive()) {
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'index.html';
+                }
+            }
+        }
+
         // Obtener configuración de subtítulos desde localStorage
         function getSubtitlesSetting() {
             try {
@@ -1032,12 +1077,19 @@
                     helpTooltip.classList.remove('active');
                 }, 4000);
             });
+
+            // Escape: volver atrás
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    handleEscapeKey();
+                }
+            });
         }
 
         // Mostrar resultados
         function showResults() {
-            lessonScreen.classList.remove('active');
-            resultScreen.classList.add('active');
+            showInternalScreen('result');
 
             document.getElementById('correct-count').textContent = correctAnswers;
             document.getElementById('signs-learned').textContent = lessons.length;

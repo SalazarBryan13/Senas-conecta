@@ -342,7 +342,7 @@
                         <span class="key-description">Siguiente elemento</span>
                     </div>
                     <div class="key-item">
-                        <kbd>BloqMayus</kbd>
+                        <kbd>Shift + Tab</kbd>
                         <span class="key-description">Elemento anterior</span>
                     </div>
                     <div class="key-item">
@@ -382,6 +382,20 @@
             <a href="index.html" class="back-link">← Volver al inicio</a>
         </div>
     </main>
+
+    <script>
+        // Escape: volver atrás / inicio
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'index.html';
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

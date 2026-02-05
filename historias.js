@@ -5,6 +5,7 @@
 // Estado global de las historias
 const GameState = {
     currentScreen: 'story-screen',
+    screenStack: [],
     playerType: 'hearing',
     gameMode: 'story',
     currentChapter: 0,
@@ -657,7 +658,23 @@ const StoryChapters = [
 // FUNCIONES DE NAVEGACIÓN
 // ============================================
 
-function showScreen(screenId) {
+function showScreen(screenId, options = {}) {
+    const { pushToStack = true } = options;
+
+    // Guardar la pantalla actual para poder regresar con Escape
+    if (pushToStack) {
+        if (!GameState.screenStack) {
+            GameState.screenStack = [];
+        }
+        if (GameState.currentScreen && GameState.currentScreen !== screenId) {
+            GameState.screenStack.push(GameState.currentScreen);
+            // Evitar que la pila crezca indefinidamente
+            if (GameState.screenStack.length > 20) {
+                GameState.screenStack.shift();
+            }
+        }
+    }
+
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
@@ -666,6 +683,37 @@ function showScreen(screenId) {
     if (targetScreen) {
         targetScreen.classList.add('active');
         GameState.currentScreen = screenId;
+    }
+}
+
+// Manejar tecla Escape para retroceder de pantalla
+function handleEscapeKey() {
+    // Volver a la pantalla anterior si existe en la pila
+    if (GameState.screenStack && GameState.screenStack.length > 0) {
+        const previousScreen = GameState.screenStack.pop();
+        showScreen(previousScreen, { pushToStack: false });
+
+        // Actualizar contenido relevante al volver
+        if (previousScreen === 'story-screen') {
+            loadStoryScene(GameState.currentChapter, GameState.currentScene);
+        } else if (previousScreen === 'progress-map-screen') {
+            updateProgressMap();
+        } else if (previousScreen === 'result-screen') {
+            updateResultScreen();
+        }
+        return;
+    }
+
+    // Si no hay historial y no estamos en la historia, ir a la historia
+    if (GameState.currentScreen !== 'story-screen') {
+        showScreen('story-screen', { pushToStack: false });
+        loadStoryScene(GameState.currentChapter, GameState.currentScene);
+        return;
+    }
+
+    // Último recurso: usar el historial del navegador
+    if (window.history.length > 1) {
+        window.history.back();
     }
 }
 
@@ -694,6 +742,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setupStoryListeners();
     setupResultListeners();
     setupProgressMapListeners();
+
+    // Escape para volver a la pantalla anterior
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            handleEscapeKey();
+        }
+    });
 
     // Verificar si se debe mostrar el mapa de progreso directamente
     if (screenParam === 'progress-map') {

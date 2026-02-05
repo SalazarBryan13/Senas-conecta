@@ -348,6 +348,18 @@
                     }, 500);
                 });
             }
+
+            // Escape: volver atrás (sin guardar)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }
+            });
         });
     </script>
 
