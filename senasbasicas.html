@@ -579,7 +579,10 @@
 </head>
 
 <body>
-    <main>
+    <!-- Skip link para navegación por teclado -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <main id="main-content">
         <!-- Pantalla de Lección -->
         <div id="lesson-screen" class="screen active">
             <div class="container">
@@ -595,7 +598,7 @@
                 <!-- Área de video de la seña -->
                 <div class="sign-illustration-area">
                     <div class="sign-video-container">
-                        <video class="sign-video" id="sign-video" controls loop playsinline>
+                        <video class="sign-video" id="sign-video" controls loop playsinline aria-label="Video demostrativo de la seña">
                             <source src="assets/videos/signs/hola.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                         </video>
@@ -613,13 +616,13 @@
 
                 <!-- Opciones de respuesta -->
                 <div class="answer-options" id="answer-options" role="radiogroup" aria-label="Opciones de respuesta">
-                    <button class="answer-option" data-answer="hola">
+                    <button class="answer-option" data-answer="hola" aria-label="Seleccionar opción: Hola">
                         👋 Hola
                     </button>
-                    <button class="answer-option" data-answer="gracias">
+                    <button class="answer-option" data-answer="gracias" aria-label="Seleccionar opción: Gracias">
                         🙏 Gracias
                     </button>
-                    <button class="answer-option" data-answer="adios">
+                    <button class="answer-option" data-answer="adios" aria-label="Seleccionar opción: Adiós">
                         👋 Adiós
                     </button>
                 </div>
@@ -630,7 +633,7 @@
                 </div>
 
                 <!-- Botones -->
-                <button class="btn-primary" id="continue-btn" disabled>
+                <button class="btn-primary" id="continue-btn" disabled aria-label="Continuar a la siguiente lección">
                     Continuar
                 </button>
 

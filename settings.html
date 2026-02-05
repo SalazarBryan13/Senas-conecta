@@ -253,8 +253,10 @@
 </head>
 
 <body>
+    <!-- Skip link para navegación por teclado -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
-    <div class="game-panel">
+    <div class="game-panel" id="main-content">
         <!-- Header -->
         <h1 class="game-title">CONFIGURACIÓN</h1>
         <p class="game-subtitle">Ajustes del Juego</p>
@@ -274,14 +276,14 @@
             </div>
 
             <!-- Botones -->
-            <button class="game-btn primary" id="save-settings-btn">
-                <span class="btn-icon">💾</span> GUARDAR Y SALIR
+            <button class="game-btn primary" id="save-settings-btn" aria-label="Guardar configuración y volver al inicio">
+                <span class="btn-icon" aria-hidden="true">💾</span> GUARDAR Y SALIR
             </button>
 
             <div class="back-btn-container">
                 <a href="index.html" style="text-decoration: none;">
-                    <button class="game-btn">
-                        <span class="btn-icon">↩</span> SOLO SALIR
+                    <button class="game-btn" aria-label="Volver al inicio sin guardar">
+                        <span class="btn-icon" aria-hidden="true">↩</span> SOLO SALIR
                     </button>
                 </a>
             </div>

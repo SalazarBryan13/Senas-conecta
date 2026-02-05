@@ -1166,6 +1166,8 @@
 </head>
 
 <body>
+    <!-- Skip link para navegación por teclado -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
     <!-- Indicador de ayuda para teclado -->
     <div class="keyboard-hint" id="keyboard-hint" aria-live="polite" aria-atomic="true">
@@ -1205,13 +1207,13 @@
                 </div>
 
                 <!-- Área de ilustración de la escena (espacio para imagen) -->
-                <div class="scene-illustration-area" role="img" aria-label="Ilustración de la escena">
+                <div class="scene-illustration-area" role="img" aria-label="Área de ilustración de la escena">
                     <div class="scene-image" id="scene-image">
                         <!-- Marco profesional para la imagen -->
                         <div class="image-frame" id="image-frame">
                             <!-- Imagen de la escena (se carga dinámicamente) -->
                             <img class="scene-img" id="scene-img" src="" alt="Ilustración de la escena"
-                                style="display: none;">
+                                style="display: none;" role="img" aria-label="Ilustración visual de la escena actual">
                             <!-- Placeholder elegante cuando no hay imagen -->
                             <div class="illustration-placeholder" id="illustration-placeholder">
                                 <span class="placeholder-icon">🖼️</span>
@@ -1271,7 +1273,7 @@
             <div class="container">
                 <!-- Icono de éxito -->
                 <div class="success-icon" role="img" aria-label="Lección completada exitosamente">
-                    <svg viewBox="0 0 100 100" class="checkmark">
+                    <svg viewBox="0 0 100 100" class="checkmark" aria-label="Icono de verificación" role="img">
                         <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="4" />
                         <path d="M30 50 L45 65 L70 35" fill="none" stroke="currentColor" stroke-width="6"
                             stroke-linecap="round" />
@@ -1305,11 +1307,11 @@
 
                 <!-- Botones de acción -->
                 <div class="action-buttons">
-                    <button class="btn btn-primary" id="next-level-btn">Siguiente capítulo</button>
-                    <button class="btn btn-secondary" id="view-progress-map-btn">Ver mapa de avance</button>
+                    <button class="btn btn-primary" id="next-level-btn" aria-label="Continuar al siguiente capítulo">Siguiente capítulo</button>
+                    <button class="btn btn-secondary" id="view-progress-map-btn" aria-label="Ver mapa de progreso y capítulos disponibles">Ver mapa de avance</button>
                 </div>
 
-                <button class="text-link" id="retry-lesson-btn">Reintentar lección</button>
+                <button class="text-link" id="retry-lesson-btn" aria-label="Reintentar esta lección">Reintentar lección</button>
             </div>
         </div>
 
@@ -1324,10 +1326,10 @@
                 </div>
 
                 <!-- Camino del mapa estilo juego -->
-                <div class="game-path" role="list" aria-label="Capítulos disponibles">
+                <nav class="game-path" role="navigation" aria-label="Navegación de capítulos">
 
                     <!-- Capítulo 1 - Completado -->
-                    <div class="path-node completed" data-chapter="0" role="listitem" tabindex="0">
+                    <div class="path-node completed" data-chapter="0" role="button" tabindex="0" aria-label="Capítulo 1: Encuentro en la Escuela - Completado">
                         <div class="node-connector top-connector"></div>
                         <div class="node-circle">
                             <span class="node-number">1</span>
@@ -1349,7 +1351,7 @@
                     </div>
 
                     <!-- Capítulo 2 - En progreso -->
-                    <div class="path-node in-progress current" data-chapter="1" role="listitem" tabindex="0">
+                    <div class="path-node in-progress current" data-chapter="1" role="button" tabindex="0" aria-label="Capítulo 2: Encuentro en el Parque - En progreso">
                         <div class="node-connector top-connector"></div>
                         <div class="node-circle pulsing">
                             <span class="node-number">2</span>
@@ -1370,7 +1372,7 @@
                     </div>
 
                     <!-- Capítulo 3 - Disponible -->
-                    <div class="path-node available" data-chapter="2" role="listitem" tabindex="0">
+                    <div class="path-node available" data-chapter="2" role="button" tabindex="0" aria-label="Capítulo 3: Inclusión en el Trabajo - Disponible">
                         <div class="node-connector top-connector inactive"></div>
                         <div class="node-circle">
                             <span class="node-number">3</span>
@@ -1391,7 +1393,7 @@
                     </div>
 
                     <!-- Capítulo 4 - Disponible -->
-                    <div class="path-node available" data-chapter="3" role="listitem" tabindex="0">
+                    <div class="path-node available" data-chapter="3" role="button" tabindex="0" aria-label="Capítulo 4: Familia y Amistad - Disponible">
                         <div class="node-connector top-connector inactive"></div>
                         <div class="node-circle">
                             <span class="node-number">4</span>
