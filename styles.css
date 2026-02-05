@@ -390,7 +390,7 @@ h6 {
 
 .tagline {
     text-align: center;
-    color: #4F46E5;
+    color: #4338CA;
     margin-bottom: var(--spacing-xl);
     font-size: var(--font-size-lg);
     font-weight: 600;
@@ -840,7 +840,7 @@ h6 {
 }
 
 .global-progress-indicator .progress-text {
-    color: #4F46E5;
+    color: #4338CA;
     font-weight: 600;
     font-size: var(--font-size-base);
 }

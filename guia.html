@@ -30,6 +30,10 @@
             --sunrise-cream: #FFF9E6;
             --sunrise-text: #5D4E37;
             --sunrise-success: #58D68D;
+            /* Colores de texto con mejor contraste para WCAG 2.2 AA */
+            --sunrise-text-dark: #2C1F15;
+            --sunrise-orange-dark: #8B3500;
+            --sunrise-orange-text: #A04000;
         }
 
         /* Reset */
@@ -130,10 +134,10 @@
             font-family: 'Fredoka One', 'Nunito', sans-serif;
             font-size: 1.8rem;
             font-weight: 400;
-            color: var(--sunrise-orange-deep);
+            color: var(--sunrise-orange-dark);
             text-align: center;
             margin-bottom: 1.5rem;
-            text-shadow: 0 2px 4px rgba(211, 84, 0, 0.15);
+            text-shadow: 0 2px 4px rgba(139, 53, 0, 0.2);
         }
 
         .screen-title span {
@@ -141,7 +145,7 @@
             font-size: 0.9rem;
             font-family: 'Nunito', sans-serif;
             font-weight: 600;
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             margin-top: 0.5rem;
         }
 
@@ -163,7 +167,7 @@
         .guide-section h3 {
             font-family: 'Fredoka One', sans-serif;
             font-size: 1.1rem;
-            color: var(--sunrise-orange);
+            color: var(--sunrise-orange-text);
             margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
@@ -175,7 +179,7 @@
         }
 
         .guide-section p {
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             line-height: 1.7;
             font-size: 0.95rem;
         }
@@ -187,7 +191,7 @@
         }
 
         .guide-list li {
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             padding: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
@@ -203,7 +207,7 @@
         }
 
         .guide-list li strong {
-            color: var(--sunrise-orange-deep);
+            color: var(--sunrise-orange-dark);
         }
 
         /* Tarjetas de modo */
@@ -229,13 +233,13 @@
 
         .mode-card .mode-name {
             font-weight: 700;
-            color: var(--sunrise-orange-deep);
+            color: var(--sunrise-orange-dark);
             font-size: 0.9rem;
         }
 
         .mode-card .mode-desc {
             font-size: 0.75rem;
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             margin-top: 0.25rem;
         }
 
@@ -262,14 +266,14 @@
             font-family: 'Nunito', monospace;
             font-weight: 700;
             font-size: 0.85rem;
-            color: var(--sunrise-orange-deep);
+            color: var(--sunrise-orange-dark);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             min-width: 45px;
             text-align: center;
         }
 
         .key-description {
-            color: var(--sunrise-text);
+            color: var(--sunrise-text-dark);
             font-size: 0.9rem;
             font-weight: 600;
         }
