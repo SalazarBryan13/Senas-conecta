@@ -43,55 +43,20 @@
             box-sizing: border-box;
         }
 
-        /* Fondo Amanecer */
+        /* Fondo sólido oscuro (WCAG-friendly) */
         body {
             font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
-            background:
-                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 70% 30%, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
-                radial-gradient(circle at 50% 85%, rgba(241, 196, 15, 0.6) 0%, rgba(243, 156, 18, 0.3) 20%, transparent 50%),
-                linear-gradient(180deg,
-                    #5DADE2 0%,
-                    #85C1E9 10%,
-                    #AED6F1 20%,
-                    #FDEBD0 35%,
-                    #F9E79F 45%,
-                    #F7DC6F 55%,
-                    #F39C12 70%,
-                    #E67E22 85%,
-                    #D35400 100%);
-            background-attachment: fixed;
+            background: #0B1220;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             padding: 1.5rem;
         }
 
-        /* Rayos de sol */
+        /* Desactivar decoración de fondo anterior */
         body::before {
-            content: '';
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200%;
-            height: 60%;
-            background:
-                conic-gradient(from 0deg at 50% 100%,
-                    transparent 0deg,
-                    rgba(255, 200, 100, 0.15) 10deg,
-                    transparent 20deg,
-                    rgba(255, 200, 100, 0.1) 30deg,
-                    transparent 40deg,
-                    rgba(255, 200, 100, 0.15) 50deg,
-                    transparent 60deg,
-                    rgba(255, 200, 100, 0.1) 70deg,
-                    transparent 80deg,
-                    rgba(255, 200, 100, 0.15) 90deg,
-                    transparent 100deg);
-            pointer-events: none;
-            z-index: 0;
+            content: none;
         }
 
         main {
@@ -134,10 +99,10 @@
             font-family: 'Fredoka One', 'Nunito', sans-serif;
             font-size: 1.8rem;
             font-weight: 400;
-            color: var(--sunrise-orange-dark);
+            color: #000000;
             text-align: center;
             margin-bottom: 1.5rem;
-            text-shadow: 0 2px 4px rgba(139, 53, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
         }
 
         .screen-title span {
@@ -145,7 +110,7 @@
             font-size: 0.9rem;
             font-family: 'Nunito', sans-serif;
             font-weight: 600;
-            color: var(--sunrise-text-dark);
+            color: #000000;
             margin-top: 0.5rem;
         }
 
@@ -167,7 +132,7 @@
         .guide-section h3 {
             font-family: 'Fredoka One', sans-serif;
             font-size: 1.1rem;
-            color: var(--sunrise-orange-text);
+            color: #000000;
             margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
@@ -179,7 +144,7 @@
         }
 
         .guide-section p {
-            color: var(--sunrise-text-dark);
+            color: #000000;
             line-height: 1.7;
             font-size: 0.95rem;
         }
@@ -191,7 +156,7 @@
         }
 
         .guide-list li {
-            color: var(--sunrise-text-dark);
+            color: #000000;
             padding: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
@@ -207,7 +172,8 @@
         }
 
         .guide-list li strong {
-            color: var(--sunrise-orange-dark);
+            color: #000000;
+            font-weight: 800;
         }
 
         /* Tarjetas de modo */
@@ -233,13 +199,13 @@
 
         .mode-card .mode-name {
             font-weight: 700;
-            color: var(--sunrise-orange-dark);
+            color: #000000;
             font-size: 0.9rem;
         }
 
         .mode-card .mode-desc {
             font-size: 0.75rem;
-            color: var(--sunrise-text-dark);
+            color: #000000;
             margin-top: 0.25rem;
         }
 
@@ -266,14 +232,14 @@
             font-family: 'Nunito', monospace;
             font-weight: 700;
             font-size: 0.85rem;
-            color: var(--sunrise-orange-dark);
+            color: #000000;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             min-width: 45px;
             text-align: center;
         }
 
         .key-description {
-            color: var(--sunrise-text-dark);
+            color: #000000;
             font-size: 0.9rem;
             font-weight: 600;
         }
