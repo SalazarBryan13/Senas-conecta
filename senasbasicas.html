@@ -616,13 +616,13 @@
 
                 <!-- Opciones de respuesta -->
                 <div class="answer-options" id="answer-options" role="radiogroup" aria-label="Opciones de respuesta">
-                    <button class="answer-option" data-answer="hola" aria-label="Seleccionar opción: Hola">
+                    <button class="answer-option" role="radio" aria-checked="false" data-answer="hola" aria-label="Seleccionar opción: Hola">
                         👋 Hola
                     </button>
-                    <button class="answer-option" data-answer="gracias" aria-label="Seleccionar opción: Gracias">
+                    <button class="answer-option" role="radio" aria-checked="false" data-answer="gracias" aria-label="Seleccionar opción: Gracias">
                         🙏 Gracias
                     </button>
-                    <button class="answer-option" data-answer="adios" aria-label="Seleccionar opción: Adiós">
+                    <button class="answer-option" role="radio" aria-checked="false" data-answer="adios" aria-label="Seleccionar opción: Adiós">
                         👋 Adiós
                     </button>
                 </div>
@@ -954,6 +954,8 @@
             lesson.options.forEach(option => {
                 const btn = document.createElement('button');
                 btn.className = 'answer-option';
+                btn.setAttribute('role', 'radio');
+                btn.setAttribute('aria-checked', 'false');
                 btn.setAttribute('data-answer', option.value);
                 btn.setAttribute('aria-label', `Seleccionar opción: ${option.text}`);
                 btn.textContent = option.text;
@@ -980,8 +982,13 @@
             const lesson = lessons[currentLesson];
             const isCorrect = answer === lesson.correct;
 
-            // Deshabilitar todas las opciones
+            // Actualizar aria-checked: marcar el seleccionado como true, los demás como false
             document.querySelectorAll('.answer-option').forEach(btn => {
+                if (btn === button) {
+                    btn.setAttribute('aria-checked', 'true');
+                } else {
+                    btn.setAttribute('aria-checked', 'false');
+                }
                 btn.disabled = true;
             });
 
